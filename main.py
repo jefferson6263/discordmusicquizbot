@@ -58,7 +58,25 @@ async def join(ctx):
     elif ctx.channel.name == 'lobby' and username_in_list(username, users) == True:
 
         await ctx.send(f'{username} has already joined the game!')
+        
 
+@client.command(name='test',help='displays help menu')
+async def help(ctx):
+        
+    skip = discord.Embed(
+        title = "Help Menu for Dummies",
+        description = f"Welcome to Jono and Jeff's Music Trivia Bot!! Here is a quick guide.",
+        colour = 0x2F329F
+    )
+
+    skip.add_field(name='How it works', value="In this Trivia you will be tested in 4 different categories, Audio, Artist, Album Cover and Lyrics.", inline=False)
+    skip.add_field(name='Audio', value="In this Category you will be played a short audio clip and you will have identify the Song Name and/or Artist. Bonus marks if you get both!!", inline=False)
+    skip.add_field(name='Artist', value="In this Category you will be shown a picture of a music Artist and you will have to identify them.", inline=False)
+    skip.add_field(name='Album Cover', value="In this Category you will be shown a picture of an Album Cover and you will have to identify the album.", inline=False)
+    skip.add_field(name='Lyrics', value="In this Category you will be shown lyrics from a song and you will have identify the Song Name and/or Artist. Bonus marks if you get both!!", inline=False)
+    skip.add_field(name='How to Answer', value="You answer questions simply by typing in the quiz-room chat when a game is active. When answering questions that require a song name and artist, make sure to include a 'by' between the song name and artist to make sure you get bonus marks. Eg: Diamonds by Rihanna.", inline=False)
+    skip.add_field(name='How do I gain points?', value="You gain points by typing the correct answer in the quiz-rrom chat. Points are allocated on a first come first served basis.", inline=False)
+    await ctx.message.channel.send(embed = skip)
         
 
 @client.command()
