@@ -3,7 +3,7 @@ from helper_functions import username_in_list
 from user import User
 from discord.ext import commands
 
-TOKEN = 'ODc5MzgzOTg1Nzg3MTMzOTcy.YSO8KA.eZB4cWDmeAC0_VoWuCluFgbpmJs'
+TOKEN = 'ODc5MzgzOTg1Nzg3MTMzOTcy.YSO8KA.rKBBRrUI0ewQv6TYejpTaNQN7LI'
 client = commands.Bot(command_prefix='%')
 
 users = []
