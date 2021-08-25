@@ -1,3 +1,7 @@
+import discord
+from discord import message
+from discord.utils import get
+
 def username_in_list(user, list):
 
     for i in list:
@@ -19,6 +23,19 @@ def remove_leading_and_trailing_spaces(list):
         modified_list.append(str)
     
     return modified_list
+
+
+def is_user_admin(ctx):
+    user = ctx.message.author
+    
+    role = discord.utils.find(lambda r: r.name == 'Admin', ctx.message.guild.roles)
+    print(role)
+    print(user.roles)
+    if role in user.roles:
+        return True
+    else:
+        return False
+
     
 
 
