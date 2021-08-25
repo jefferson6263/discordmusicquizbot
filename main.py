@@ -4,6 +4,7 @@ from helper_functions import username_in_list, remove_leading_and_trailing_space
 from game import Game
 from user import User
 from discord.ext import commands
+from add_song import addSong
 
 TOKEN = 'ODc5MzgzOTg1Nzg3MTMzOTcy.YSO8KA.rKBBRrUI0ewQv6TYejpTaNQN7LI'
 client = commands.Bot(command_prefix='%')
@@ -139,5 +140,11 @@ async def leave(ctx):
                 break
 
         print(users)
+
+
+@client.command(name='addsong',help='add a song to the song bank')
+async def add(ctx):
+    addsong = addSong(ctx)
+    await addsong.add()
        
 client.run(TOKEN)
