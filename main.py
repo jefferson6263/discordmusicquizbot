@@ -3,11 +3,8 @@ import discord
 from helper_functions import username_in_list, remove_leading_and_trailing_spaces
 from game import Game
 from user import User
-from discord.ext import commands, tasks
+from discord.ext import commands
 from add_song import addSong
-import threading
-import time
-import asyncio
 
 TOKEN = 'ODc5MzgzOTg1Nzg3MTMzOTcy.YSO8KA.rKBBRrUI0ewQv6TYejpTaNQN7LI'
 client = commands.Bot(command_prefix='%')
