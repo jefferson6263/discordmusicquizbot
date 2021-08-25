@@ -1,5 +1,6 @@
 import json
 import random
+from discord.ext import tasks
 
 def load_songs():
 
@@ -25,16 +26,32 @@ class Game:
         self.mode = 0
         self.songs = load_songs()
         self.current = self.songs.pop(0)
+        self.timer = 5
 
         print(self.current)
+    
+    @tasks.loop(seconds=1.0)
+    async def start_timer(self):
 
-    def active(self):
+        self.timer -= 1
+
+        if self.timer <= 0:
+
+            self.timer = 5
+            self.start_timer.stop()
+
+    def current_timer(self):
+
+        return self.timer
+
+    def is_active(self):
 
         return self.active
     
     def start_game(self):
 
         self.active = True
+        self.start_timer.start()
 
     def current_song_name(self):
 

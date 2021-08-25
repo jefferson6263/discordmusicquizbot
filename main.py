@@ -3,8 +3,11 @@ import discord
 from helper_functions import username_in_list, remove_leading_and_trailing_spaces
 from game import Game
 from user import User
-from discord.ext import commands
+from discord.ext import commands, tasks
 from add_song import addSong
+import threading
+import time
+import asyncio
 
 TOKEN = 'ODc5MzgzOTg1Nzg3MTMzOTcy.YSO8KA.rKBBRrUI0ewQv6TYejpTaNQN7LI'
 client = commands.Bot(command_prefix='%')
@@ -178,27 +181,40 @@ async def players(ctx):
         for i in users:
 
             if i.admin:
-                string += f"⦿ {i.username} (admin)\n"
+                string += f"• {i.username} (admin)\n"
             else:
-                string += f"⦿ {i.username}\n"
+                string += f"• {i.username}\n"
             
         if len(string) == 0:
 
-            string = "No players have joined yet!"
+            string = "No players have joined yet!\n"
 
         bot_message = discord.Embed(
             title = 'Joined Players',
-            description = string,
+            description = string + f"Timer: {game.current_timer()}", # remove timer when finished debugging
             colour = 0x00A2FF
         )
 
         await ctx.send(embed = bot_message)
 
+@client.command()
+async def start(ctx):
 
+    if ctx.channel.name == 'lobby':
+
+        bot_message = discord.Embed(
+            title = 'Game has Started!',
+            description = 'Prepare for round 1',
+            colour = 0x00A2FF
+        )
+
+        await ctx.send(embed = bot_message)
+
+        game.start_game()
 
 @client.command(name='addsong',help='add a song to the song bank')
 async def add(ctx):
     addsong = addSong(ctx)
     await addsong.add()
-       
+
 client.run(TOKEN)
