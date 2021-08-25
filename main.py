@@ -88,16 +88,32 @@ async def join(ctx):
         if len(users) == 0:
 
             users.append(User(username, True))
-            await ctx.send(f'{username} (admin) has joined the game!')
+            bot_message = discord.Embed(
+                title = 'Admin has Joined',
+                description = f'{username} (admin) has joined the game!',
+                colour = 0x00FF08
+            )
 
         else: 
 
             users.append(User(username, False))
-            await ctx.send(f'{username} has joined the game!')
+            bot_message = discord.Embed(
+                title = 'Player has Joined',
+                description = f'{username} has joined the game!',
+                colour = 0x00FF08
+            )
+
+        await ctx.send(embed = bot_message)
 
     elif ctx.channel.name == 'lobby' and username_in_list(username, users) == True:
 
-        await ctx.send(f'{username} has already joined the game!')
+        bot_message = discord.Embed(
+                title = 'Player Already Joined',
+                description = f'{username} has already joined the game!',
+                colour = 0x00FF08
+            )
+
+        await ctx.send(embed = bot_message)
         
 
 @client.command(name='test',help='displays help menu')
@@ -125,8 +141,14 @@ async def leave(ctx):
     username = str(ctx.author).split('#')[0]
 
     if ctx.channel.name == 'lobby' and username_in_list(username, users) == False:
-
-        await ctx.send(f'{username} has not joined the game!')
+        
+        bot_message = discord.Embed(
+            title = 'Error',
+            description = f'{username} has not joined the game!',
+            colour = 0xFF0000
+        )
+        
+        await ctx.send(embed = bot_message)
     
     elif ctx.channel.name == 'lobby' and username_in_list(username, users) == True:
 
@@ -135,9 +157,40 @@ async def leave(ctx):
             if u.username == str(ctx.author).split('#')[0]:
 
                 users.remove(u) 
-                await ctx.send(f'{username} has left the game!')
+                bot_message = discord.Embed(
+                    title = 'Player has Left',
+                    description = f'{username} has left the game!',
+                    colour = 0xFF0000
+                )
                 break
 
+        await ctx.send(embed = bot_message) 
+
         print(users)
-       
+    
+@client.command()
+async def players(ctx):
+
+    if ctx.channel.name == 'lobby':
+
+        string = ""
+        for i in users:
+
+            if i.admin:
+                string += f"⦿ {i.username} (admin)\n"
+            else:
+                string += f"⦿ {i.username}\n"
+            
+        if len(string) == 0:
+
+            string = "No players have joined yet!"
+
+        bot_message = discord.Embed(
+            title = 'Joined Players',
+            description = string,
+            colour = 0x00A2FF
+        )
+
+        await ctx.send(embed = bot_message)
+
 client.run(TOKEN)
