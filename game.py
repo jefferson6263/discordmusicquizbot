@@ -28,6 +28,14 @@ class Game:
 
         print(self.current)
 
+    def active(self):
+
+        return self.active
+    
+    def start_game(self):
+
+        self.active = True
+
     def current_song_name(self):
 
         return self.current['name']
