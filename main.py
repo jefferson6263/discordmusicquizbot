@@ -55,6 +55,7 @@ async def on_message(message):
 
                     game.add_points(username, 10)
                     await message.channel.send(embed = bot_message)
+                    await message.author.edit(nick=f"({game.get_user_points(username)}) {username}")
 
                 elif user_message[1].lower() == game.current_song_artist():
                     bot_message = discord.Embed(
@@ -64,6 +65,7 @@ async def on_message(message):
 
                     game.add_points(username, 5)
                     await message.channel.send(embed = bot_message) 
+                    await message.author.edit(nick=f"({game.get_user_points(username)}) {username}")
             
             except:
 
@@ -75,6 +77,7 @@ async def on_message(message):
 
                     game.add_points(username, 5)
                     await message.channel.send(embed = bot_message)
+                    await message.author.edit(nick=f"({game.get_user_points(username)}) {username}")
                 
                 elif user_message[0].lower() == game.current_song_artist():
                     bot_message = discord.Embed(
@@ -84,15 +87,36 @@ async def on_message(message):
 
                     game.add_points(username, 5)
                     await message.channel.send(embed = bot_message)
-
-                
+                    await message.author.edit(nick=f"({game.get_user_points(username)}) {username}")
 
     await client.process_commands(message)
+
+@client.command(name='test',help='displays help menu')
+async def help(ctx):
+        
+    skip = discord.Embed(
+        title = "Help Menu for Dummies",
+        description = f"Welcome to Jono and Jeff's Music Trivia Bot!! Here is a quick guide.",
+        colour = 0x2F329F
+    )
+
+    skip.add_field(name='How it works', value="In this Trivia you will be tested in 4 different categories, Audio, Artist, Album Cover and Lyrics.", inline=False)
+    skip.add_field(name='Audio', value="In this Category you will be played a short audio clip and you will have identify the Song Name and/or Artist. Bonus marks if you get both!!", inline=False)
+    skip.add_field(name='Artist', value="In this Category you will be shown a picture of a music Artist and you will have to identify them.", inline=False)
+    skip.add_field(name='Album Cover', value="In this Category you will be shown a picture of an Album Cover and you will have to identify the Album name and/or Artist.", inline=False)
+    skip.add_field(name='Lyrics', value="In this Category you will be shown lyrics from a song and you will have identify the Song Name and/or Artist. Bonus marks if you get both!!", inline=False)
+    skip.add_field(name='How to Answer', value="You answer questions simply by typing in the quiz-room chat when a game is active. When answering questions that require a song name and artist, make sure to include a 'by' between the song name and artist to make sure you get bonus marks. Eg: diamonds by rihanna.", inline=False)
+    skip.add_field(name='How do I gain points?', value="You gain points by typing the correct answer in the quiz-room chat. Points are allocated on a first come first served basis.", inline=False)
+    await ctx.message.channel.send(embed = skip)
+        
 
 @client.command()
 async def join(ctx):
 
     username = str(ctx.author).split('#')[0]
+    member = ctx.message.author
+    role = discord.utils.get(ctx.guild.roles, name = 'Joined Players')
+
     print('Checking')
 
     if ctx.channel.name == 'lobby' and username_in_list(username, users) == False:
@@ -117,6 +141,8 @@ async def join(ctx):
             )
 
         await ctx.send(embed = bot_message)
+        await member.add_roles(role)
+        await member.edit(nick=f"(0) {username}")
 
     elif ctx.channel.name == 'lobby' and username_in_list(username, users) == True:
 
@@ -129,29 +155,12 @@ async def join(ctx):
         await ctx.send(embed = bot_message)
         
 
-@client.command(name='test',help='displays help menu')
-async def help(ctx):
-        
-    skip = discord.Embed(
-        title = "Help Menu for Dummies",
-        description = f"Welcome to Jono and Jeff's Music Trivia Bot!! Here is a quick guide.",
-        colour = 0x2F329F
-    )
-
-    skip.add_field(name='How it works', value="In this Trivia you will be tested in 4 different categories, Audio, Artist, Album Cover and Lyrics.", inline=False)
-    skip.add_field(name='Audio', value="In this Category you will be played a short audio clip and you will have identify the Song Name and/or Artist. Bonus marks if you get both!!", inline=False)
-    skip.add_field(name='Artist', value="In this Category you will be shown a picture of a music Artist and you will have to identify them.", inline=False)
-    skip.add_field(name='Album Cover', value="In this Category you will be shown a picture of an Album Cover and you will have to identify the Album name and/or Artist.", inline=False)
-    skip.add_field(name='Lyrics', value="In this Category you will be shown lyrics from a song and you will have identify the Song Name and/or Artist. Bonus marks if you get both!!", inline=False)
-    skip.add_field(name='How to Answer', value="You answer questions simply by typing in the quiz-room chat when a game is active. When answering questions that require a song name and artist, make sure to include a 'by' between the song name and artist to make sure you get bonus marks. Eg: diamonds by rihanna.", inline=False)
-    skip.add_field(name='How do I gain points?', value="You gain points by typing the correct answer in the quiz-room chat. Points are allocated on a first come first served basis.", inline=False)
-    await ctx.message.channel.send(embed = skip)
-        
-
 @client.command()
 async def leave(ctx):
 
     username = str(ctx.author).split('#')[0]
+    member = ctx.message.author
+    role = discord.utils.get(ctx.guild.roles, name = 'Joined Players')
 
     if ctx.channel.name == 'lobby' and username_in_list(username, users) == False:
         
@@ -178,6 +187,8 @@ async def leave(ctx):
                 break
 
         await ctx.send(embed = bot_message) 
+        await member.remove_roles(role)
+        await member.edit(nick=f"{username}")
 
         print(users)
     
@@ -230,6 +241,7 @@ async def start(ctx):
         )
 
         await ctx.send(embed = bot_message)
+        await ctx.guild.create_text_channel('quiz-room')
 
         game.start_game()
 

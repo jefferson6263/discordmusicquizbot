@@ -3,6 +3,7 @@ from os import remove
 import random
 from discord.ext import tasks
 import discord
+import asyncio
 
 def load_songs():
 
@@ -26,7 +27,7 @@ class Game:
 
         self.active = False
         self.mode = 0
-        self.round = 0
+        self.question = 0
         self.songs = load_songs()
         self.current = self.songs.pop(0)
         self.timer = 30
@@ -39,52 +40,65 @@ class Game:
     async def start_timer(self):
 
         channel = discord.utils.get(self.ctx.guild.channels, name="quiz-room")
-        self.timer -= 1
 
-        if self.timer == 30:
+        if self.mode == 0 and self.timer == 30:
 
-            bot_message = discord.Embed(
-                title = 'Round 1: Guess the Song (Audio)',
-                description = "You will be played a short audio clip.\n Guess the song and artist using the format: 'song' by 'artist'\n e.g diamonds by rihanna",
-                colour = 0x00A2FF
-            )
+            await self.ctx.guild.me.edit(nick=f"{self.timer} seconds left!")
+            if self.question == 0:
+                bot_message = discord.Embed(
+                    title = 'Round 1: Guess the Song (Audio)\n',
+                    description = 'You will be played a short audio clip.\n Guess the song and artist using the format:\n song by artist e.g diamonds by rihanna',
+                    colour = 0x00A2FF
+                )
+                await channel.send(embed = bot_message)
 
-        elif self.timer >= 10 and self.timer % 5 == 0:
+            if self.timer == 30:
+                bot_message = discord.Embed(
+                    title = f'Question {self.question+1} (Audio)',
+                    colour = 0x00A2FF
+                )
+                await channel.send(embed = bot_message)
 
-            bot_message = discord.Embed(
-                title = 'Timer',
-                description = f'{self.timer} seconds left!',
-                colour = 0x00A2FF
-            )
-        
-        elif self.timer > 0 and self.timer < 10:
+            self.timer -= 1
 
-            bot_message = discord.Embed(
-                title = 'Timer',
-                description = f'{self.timer} seconds left!',
-                colour = 0x00A2FF
-            )
+        elif self.timer > 0:
+
+            await self.ctx.guild.me.edit(nick=f"{self.timer} seconds left!")
+            self.timer -= 1
         
         elif self.timer <= 0:
             
+            await self.ctx.guild.me.edit(nick=f"{self.timer} seconds left!")
+
             song_name = self.current_song_name().title()
             song_artist = self.current_song_artist().title()
 
             bot_message = discord.Embed(
                 title = "Time's Up!",
-                description = f'The answer was {song_name} by {song_artist}!',
+                description = f'The answer was {song_name} by {song_artist}',
                 colour = 0x00A2FF
             )
 
-            bot_message.add_field(name='Leaderboard', value=self.leaderboard(), inline=False)
+            bot_message.add_field(name='Leaderboard\n', value=self.leaderboard(), inline=False)
 
-            self.next_song()
-            self.timer = 30
-
-        try:
             await channel.send(embed = bot_message)
-        except:
-            pass
+            
+            self.next_song()
+
+            if self.question < 5:
+
+                self.question += 1
+
+            else:
+
+                self.question = 0
+                self.mode += 1
+
+            self.timer = 30
+        
+        else: 
+
+            self.timer -= 1
 
     def current_timer(self):
 
@@ -126,15 +140,20 @@ class Game:
 
         for user in self.users:
             
-            print(f"user.username={user.username}| username={username}")
             if user.username == username:
 
                 print("added points")
                 user.points += points
                 break
-
-           
-    
+   
     def get_users(self):
 
         return self.users
+
+    def get_user_points(self, username):
+
+         for user in self.users:
+            
+            if user.username == username:
+
+                return user.points
