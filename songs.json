@@ -1,6 +1,6 @@
 {
 
-    "songs": [
+    "song_format": [
 
         {
             "name": "", 
@@ -8,7 +8,11 @@
             "lyrics": "",    
             "link": ""
 
-        },
+        }
+
+    ],
+
+    "songs": [
 
         {
             "name": "yellow", 

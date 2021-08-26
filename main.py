@@ -10,7 +10,7 @@ TOKEN = 'ODc5MzgzOTg1Nzg3MTMzOTcy.YSO8KA.rKBBRrUI0ewQv6TYejpTaNQN7LI'
 client = commands.Bot(command_prefix='%')
 
 users = []
-game = Game()
+game = None
 
 @client.event
 async def on_ready():
@@ -26,54 +26,66 @@ async def on_message(message):
     channel = str(message.channel.name)
     print(f'{username}: {user_message} ({channel})') # debug
 
-    for msg in user_message:
-
-        if msg == game.current_song_name() or msg == game.current_song_artist():
-
-            await message.delete()
-            break
-        
-    for msg in user_message: # debug
-
-        print(msg)
-
     if message.author == client.user: # bot doesn't respond to itself
 
         return
 
-    if message.channel.name == 'quiz-room':
+    for msg in user_message: # debug
 
-        try:
+        print(msg)
 
-            if user_message[0].lower() == game.current_song_name() and user_message[1].lower() == game.current_song_artist():
-                bot_message = discord.Embed(
-                    description = f'{username} has guessed the correct SONG and ARTIST! +10 points',
-                    colour = 0x00FF08
-                )
+    if game != None:
 
-            elif user_message[1].lower() == game.current_song_artist():
-                bot_message = discord.Embed(
-                    description = f'{username} has guessed the correct SONG! +5 points',
-                    colour = 0xFF9B00
-                )
+        for msg in user_message:
 
-            await message.channel.send(embed = bot_message)
-        
-        except:
+            if msg == game.current_song_name() or msg == game.current_song_artist():
 
-            if user_message[0].lower() == game.current_song_name():
-                bot_message = discord.Embed(
-                    description = f'{username} has guessed the correct SONG! +5 points',
-                    colour = 0xFF9B00
-                )
+                await message.delete()
+                break
+
+        if message.channel.name == 'quiz-room':
+
+            try:
+
+                if user_message[0].lower() == game.current_song_name() and user_message[1].lower() == game.current_song_artist():
+                    bot_message = discord.Embed(
+                        description = f'{username} has guessed the correct SONG and ARTIST! +10 points',
+                        colour = 0x00FF08
+                    )
+
+                    game.add_points(username, 10)
+                    await message.channel.send(embed = bot_message)
+
+                elif user_message[1].lower() == game.current_song_artist():
+                    bot_message = discord.Embed(
+                        description = f'{username} has guessed the correct SONG! +5 points',
+                        colour = 0xFF9B00
+                    )
+
+                    game.add_points(username, 5)
+                    await message.channel.send(embed = bot_message) 
             
-            elif user_message[0].lower() == game.current_song_artist():
-                bot_message = discord.Embed(
-                    description = f'{username} has guessed the correct ARTIST! +5 points',
-                    colour = 0xFF9B00
-                )
+            except:
 
-            await message.channel.send(embed = bot_message)
+                if user_message[0].lower() == game.current_song_name():
+                    bot_message = discord.Embed(
+                        description = f'{username} has guessed the correct SONG! +5 points',
+                        colour = 0xFF9B00
+                    )
+
+                    game.add_points(username, 5)
+                    await message.channel.send(embed = bot_message)
+                
+                elif user_message[0].lower() == game.current_song_artist():
+                    bot_message = discord.Embed(
+                        description = f'{username} has guessed the correct ARTIST! +5 points',
+                        colour = 0xFF9B00
+                    )
+
+                    game.add_points(username, 5)
+                    await message.channel.send(embed = bot_message)
+
+                
 
     await client.process_commands(message)
 
@@ -175,12 +187,21 @@ async def players(ctx):
     if ctx.channel.name == 'lobby':
 
         string = ""
-        for i in users:
 
-            if i.admin:
-                string += f"• {i.username} (admin)\n"
-            else:
-                string += f"• {i.username}\n"
+        if game == None: # if game hasn't started
+            for i in users:
+
+                if i.admin:
+                    string += f"• {i.username} (admin)\n"
+                else:
+                    string += f"• {i.username}\n"
+        else: # if games has started
+            for i in game.get_users():
+
+                if i.admin:
+                    string += f"• {i.username} (admin)\n"
+                else:
+                    string += f"• {i.username}\n"
             
         if len(string) == 0:
 
@@ -188,7 +209,7 @@ async def players(ctx):
 
         bot_message = discord.Embed(
             title = 'Joined Players',
-            description = string + f"Timer: {game.current_timer()}", # remove timer when finished debugging
+            description = string,
             colour = 0x00A2FF
         )
 
@@ -196,12 +217,15 @@ async def players(ctx):
 
 @client.command()
 async def start(ctx):
+    global users, game
 
     if ctx.channel.name == 'lobby':
 
+        game = Game(users, ctx)
+    
         bot_message = discord.Embed(
             title = 'Game has Started!',
-            description = 'Prepare for round 1',
+            description = "Move to the text channel 'quiz-room' to play\n",
             colour = 0x00A2FF
         )
 
