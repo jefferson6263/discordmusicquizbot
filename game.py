@@ -22,7 +22,7 @@ def load_songs():
     return list
 
 class Game:
-
+    
     def __init__(self, users, ctx):
 
         self.active = False
@@ -40,7 +40,7 @@ class Game:
     async def start_timer(self):
 
         if self.active == False:
-
+    
             self.start_timer.stop()
 
         channel = discord.utils.get(self.ctx.guild.channels, name="quiz-room")
