@@ -116,8 +116,9 @@ class addSong:
             name = re.sub(r'\([^)]*\)', '', name)
             
             name = name.strip()
+            print(title)
             artist = title.partition('-')[0].strip()
-            artist = title.partition('with')[0].strip()
+            artist = artist.partition('with')[0].strip()
             artist = artist.partition('and')[0].strip()
             artist = artist.partition(',')[0].strip()
             artist = artist.partition('ft.')[0].strip()
