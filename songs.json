@@ -1,31 +1,16 @@
 {
-
     "songs": [
-
         {
-            "name": "", 
+            "name": "",
             "artist": "",
-            "lyrics": "",    
+            "lyrics": "",
             "link": ""
-
         },
-
         {
-            "name": "yellow", 
-            "artist": "coldplay",
-            "lyrics": "",    
-            "link": ""
-
-        },
-
-        {
-            "name": "diamonds", 
-            "artist": "rihanna",
-            "lyrics": "",    
-            "link": ""
-
+            "name": "Malibu",
+            "artist": "Virginia To Vegas",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Virginia To Vegas, NOTD - Malibu.mp3"
         }
-
     ]
-
 }

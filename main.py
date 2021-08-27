@@ -60,7 +60,7 @@ async def on_message(message):
             await message.channel.send(embed = bot_message)
         
         except:
-
+            
             if user_message[0].lower() == game.current_song_name():
                 bot_message = discord.Embed(
                     description = f'{username} has guessed the correct SONG! +5 points',
