@@ -1,35 +1,34 @@
 {
-
-    "song_format": [
-
-        {
-            "name": "", 
-            "artist": "",
-            "lyrics": "",    
-            "link": ""
-
-        }
-
-    ],
-
     "songs": [
-
         {
-            "name": "yellow", 
-            "artist": "coldplay",
-            "lyrics": "",    
+            "name": "",
+            "artist": "",
+            "lyrics": "",
             "link": ""
-
         },
-
         {
-            "name": "diamonds", 
-            "artist": "rihanna",
-            "lyrics": "",    
-            "link": ""
-
+            "name": "STAY",
+            "artist": "The Kid LAROI",
+            "lyrics": "blah blah blah",
+            "link": "Songs/The Kid LAROI, Justin Bieber - STAY.mp3"
+        },
+        {
+            "name": "STAY",
+            "artist": "The Kid LAROI",
+            "lyrics": "blah blah blah",
+            "link": "Songs/The Kid LAROI, Justin Bieber - STAY.mp3"
+        },
+        {
+            "name": "CHEERS",
+            "artist": "Blackbear",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Blackbear & Wiz Khalifa - CHEERS.mp3"
+        },
+        {
+            "name": "Takeaway  ft. Lennon Stella",
+            "artist": "The Chainsmokers",
+            "lyrics": "blah blah blah",
+            "link": "Songs/The Chainsmokers, ILLENIUM - Takeaway  ft. Lennon Stella.mp3"
         }
-
     ]
-
 }
