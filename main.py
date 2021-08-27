@@ -276,6 +276,7 @@ async def start(ctx):
 async def add(ctx):
     addsong = addSong(ctx)
     await addsong.add()
+    
 
 @client.command()
 async def reset(ctx):
@@ -306,6 +307,7 @@ async def reset(ctx):
                 await member.remove_roles(role)
 
         await ctx.me.edit(nick=ctx.me.name)
+
 
 client.run(TOKEN)
 
