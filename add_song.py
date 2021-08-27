@@ -125,8 +125,8 @@ class addSong:
             artist = artist.partition('&')[0].strip()
             
             song_dic = {
-                "name": name, 
-                "artist": artist,
+                "name": name.lower(), 
+                "artist": artist.lower(),
                 "lyrics": "blah blah blah",    
                 "link": f'Songs/{title}.mp3'
             }
