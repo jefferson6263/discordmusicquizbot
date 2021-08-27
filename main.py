@@ -274,8 +274,11 @@ async def start(ctx):
 
 @client.command(name='addsong',help='add a song to the song bank')
 async def add(ctx):
-    addsong = addSong(ctx)
-    await addsong.add()
+
+    if ctx.channel.name == 'add-songs':
+
+        addsong = addSong(ctx)
+        await addsong.add()
 
 @client.command()
 async def reset(ctx):
