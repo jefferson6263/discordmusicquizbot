@@ -7,10 +7,28 @@
             "link": ""
         },
         {
-            "name": "Malibu",
-            "artist": "Virginia To Vegas",
+            "name": "STAY",
+            "artist": "The Kid LAROI",
             "lyrics": "blah blah blah",
-            "link": "Songs/Virginia To Vegas, NOTD - Malibu.mp3"
+            "link": "Songs/The Kid LAROI, Justin Bieber - STAY.mp3"
+        },
+        {
+            "name": "STAY",
+            "artist": "The Kid LAROI",
+            "lyrics": "blah blah blah",
+            "link": "Songs/The Kid LAROI, Justin Bieber - STAY.mp3"
+        },
+        {
+            "name": "CHEERS",
+            "artist": "Blackbear",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Blackbear & Wiz Khalifa - CHEERS.mp3"
+        },
+        {
+            "name": "Takeaway  ft. Lennon Stella",
+            "artist": "The Chainsmokers",
+            "lyrics": "blah blah blah",
+            "link": "Songs/The Chainsmokers, ILLENIUM - Takeaway  ft. Lennon Stella.mp3"
         }
     ]
 }
