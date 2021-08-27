@@ -39,6 +39,10 @@ class Game:
     @tasks.loop(seconds=1.0)
     async def start_timer(self):
 
+        if self.active == False:
+
+            self.start_timer.stop()
+
         channel = discord.utils.get(self.ctx.guild.channels, name="quiz-room")
 
         if self.mode == 0 and self.timer == 30:
@@ -82,7 +86,8 @@ class Game:
             bot_message.add_field(name='Leaderboard\n', value=self.leaderboard(), inline=False)
 
             await channel.send(embed = bot_message)
-            
+
+            self.reset_user_guesses()
             self.next_song()
 
             if self.question < 5:
@@ -100,7 +105,7 @@ class Game:
 
             self.timer -= 1
 
-    def current_timer(self):
+    def get_timer(self):
 
         return self.timer
 
@@ -112,6 +117,11 @@ class Game:
 
         self.active = True
         self.start_timer.start()
+    
+    def stop_game(self):
+    
+        self.active = False
+        self.start_timer.stop()
 
     def current_song_name(self):
 
@@ -136,24 +146,22 @@ class Game:
 
         return leaderboard_string
     
-    def add_points(self, username, points):
-
-        for user in self.users:
-            
-            if user.username == username:
-
-                print("added points")
-                user.points += points
-                break
-   
     def get_users(self):
 
         return self.users
 
-    def get_user_points(self, username):
+    def get_user(self, username):
 
-         for user in self.users:
-            
+        for user in self.users:
+
             if user.username == username:
 
-                return user.points
+                return user
+
+    def reset_user_guesses(self):
+
+        for user in self.users:
+
+            user.set_guessed_song(False)
+            user.set_guessed_artist(False)
+            user.set_guessed_album(False)

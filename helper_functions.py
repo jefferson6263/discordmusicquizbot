@@ -36,6 +36,20 @@ def is_user_admin(ctx):
     else:
         return False
 
+def is_user_game_leader(user, users):
+
+    username = user.name
+
+    for i in users:
+
+        if i.username == username and i.is_leader() == True:
+
+            return True
+
+    return False
+
+
+
     
 
 
