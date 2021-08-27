@@ -270,7 +270,7 @@ async def start(ctx):
         await ctx.send(embed = bot_message)
         await ctx.guild.create_text_channel('quiz-room')
 
-        game.start_game()
+        await game.start_game()
 
 @client.command(name='addsong',help='add a song to the song bank')
 async def add(ctx):

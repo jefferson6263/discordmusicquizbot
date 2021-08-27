@@ -1,9 +1,8 @@
 import json
-from os import remove
 import random
 from discord.ext import tasks
 import discord
-import asyncio
+from play_song import play_song
 
 def load_songs():
 
@@ -33,6 +32,7 @@ class Game:
         self.timer = 30
         self.users = users
         self.ctx = ctx
+        self.vc = None
 
         print(self.current)
     
@@ -90,14 +90,32 @@ class Game:
             self.reset_user_guesses()
             self.next_song()
 
-            if self.question < 5:
+            if self.question < 10:
 
                 self.question += 1
 
-            else:
+                if self.mode == 0:
+                    await self.vc.disconnect()
+                    self.vc = await play_song(self.current, self.ctx)
 
+            else: # currently ends the game, but can add more modes later
+                
                 self.question = 0
+                '''
                 self.mode += 1
+                '''
+
+                winner = sorted(self.users, key=lambda x: x.points, reverse=True)[0]
+
+                bot_message = discord.Embed(
+                    title = "Game has Finished!",
+                    description = f'The winner is {winner} with {winner.points} points!',
+                    colour = 0x00A2FF
+                )
+
+                bot_message.add_field(name='Final Leaderboard\n', value=self.leaderboard(), inline=False)
+                
+                await self.vc.disconnect()
 
             self.timer = 30
         
@@ -113,15 +131,17 @@ class Game:
 
         return self.active
     
-    def start_game(self):
+    async def start_game(self):
 
         self.active = True
         self.start_timer.start()
+        self.vc = await play_song(self.current, self.ctx)
     
     def stop_game(self):
     
         self.active = False
         self.start_timer.stop()
+        self.vc 
 
     def current_song_name(self):
 
@@ -165,3 +185,4 @@ class Game:
             user.set_guessed_song(False)
             user.set_guessed_artist(False)
             user.set_guessed_album(False)
+

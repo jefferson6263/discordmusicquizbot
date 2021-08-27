@@ -1,5 +1,46 @@
 {
     "songs": [
-        
+        {
+            "name": "candy paint",
+            "artist": "post malone",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Post Malone - Candy paint.mp3"
+        },
+        {
+            "name": "diamonds",
+            "artist": "rihanna",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Rihanna - Diamonds.mp3"
+        },
+        {
+            "name": "yellow",
+            "artist": "coldplay",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Coldplay - Yellow.mp3"
+        },
+        {
+            "name": "earfquake",
+            "artist": "tyler the creator",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Tyler the Creator - EARFQUAKE.mp3"
+        },
+        {
+            "name": "history",
+            "artist": "rich brian",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Rich Brian - History.mp3"
+        },
+        {
+            "name": "slow dancing in the dark",
+            "artist": "joji",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Joji - SLOW DANCING IN THE DARK.mp3"
+        },
+        {
+            "name": "perfect",
+            "artist": "ed sheeran",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Ed Sheeran - Perfect.mp3"
+        }
     ]
 }
