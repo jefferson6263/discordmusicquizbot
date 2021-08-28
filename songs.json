@@ -41,6 +41,150 @@
             "artist": "ed sheeran",
             "lyrics": "blah blah blah",
             "link": "Songs/Ed Sheeran - Perfect.mp3"
+        },
+        {
+            "name": "bad habits",
+            "artist": "ed sheeran",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Ed Sheeran - Bad Habits.mp3"
+        },
+        {
+            "name": "industry baby",
+            "artist": "lil nas x",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Lil Nas X - Industry Baby (Lyrics) Ft. Jack Harlow.mp3"
+        },
+        {
+            "name": "good 4 u",
+            "artist": "olivia rodrigo",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Olivia Rodrigo - good 4 u.mp3"
+        },
+        {
+            "name": "ram ranch",
+            "artist": "grant macdonald",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Grant MacDonald - Ram Ranch.mp3"
+        },
+        {
+            "name": "you right",
+            "artist": "doja cat",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Doja Cat, The Weeknd - You Right.mp3"
+        },
+        {
+            "name": "deja vu",
+            "artist": "olivia rodrigo",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Olivia Rodrigo - deja vu.mp3"
+        },
+        {
+            "name": "kiss me more",
+            "artist": "doja cat",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Doja Cat - Kiss Me More  ft. SZA.mp3"
+        },
+        {
+            "name": "yeah right",
+            "artist": "joji",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Joji - YEAH RIGHT.mp3"
+        },
+        {
+            "name": "heather",
+            "artist": "conan gray",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Conan Gray - Heather.mp3"
+        },
+        {
+            "name": "maniac",
+            "artist": "conan gray",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Conan Gray - Maniac.mp3"
+        },
+        {
+            "name": "stay",
+            "artist": "the kid laroi",
+            "lyrics": "blah blah blah",
+            "link": "Songs/The Kid LAROI, Justin Bieber - STAY.mp3"
+        },
+        {
+            "name": "starstruck",
+            "artist": "years and years",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Years & Years - Starstruck.mp3"
+        },
+        {
+            "name": "sundown",
+            "artist": "jack harlow",
+            "lyrics": "blah blah blah",
+            "link": "Songs/JACK HARLOW - SUNDOWN.mp3"
+        },
+        {
+            "name": "come & get it",
+            "artist": "selena gomez",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Selena Gomez - Come & Get It.mp3"
+        },
+        {
+            "name": "edamame",
+            "artist": "bbno$",
+            "lyrics": "blah blah blah",
+            "link": "Songs/bbno$ & Rich Brian - edamame.mp3"
+        },
+        {
+            "name": "september",
+            "artist": "james arthur",
+            "lyrics": "blah blah blah",
+            "link": "Songs/James Arthur - September (Lyric Video).mp3"
+        },
+        {
+            "name": "something to lose",
+            "artist": "june",
+            "lyrics": "blah blah blah",
+            "link": "Songs/june - Something To Lose.mp3"
+        },
+        {
+            "name": "why",
+            "artist": "sabrina carpenter",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Sabrina Carpenter - Why.mp3"
+        },
+        {
+            "name": "closer",
+            "artist": "the chainsmokers",
+            "lyrics": "blah blah blah",
+            "link": "Songs/The Chainsmokers - Closer  ft. Halsey.mp3"
+        },
+        {
+            "name": "believer",
+            "artist": "imagine dragons",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Imagine Dragons - Believer.mp3"
+        },
+        {
+            "name": "hair",
+            "artist": "little mix",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Little Mix - Hair  ft. Sean Paul.mp3"
+        },
+        {
+            "name": "swalla",
+            "artist": "jason derulo",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Jason Derulo - Swalla (feat. Nicki Minaj & Ty Dolla $ign).mp3"
+        },
+        {
+            "name": "lost",
+            "artist": "maroon 5",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Maroon 5 - Lost.mp3"
+        },
+        {
+            "name": "payphone",
+            "artist": "maroon 5",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Maroon 5 - Payphone ft. Wiz Khalifa (Explicit).mp3"
         }
     ]
 }
