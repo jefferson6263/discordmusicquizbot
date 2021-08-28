@@ -41,7 +41,7 @@ async def on_message(message):
 
     if game != None:
 
-        if message.channel.name != 'lobby' and message.channel.name != 'add-songs' and message.channel.name != 'General':
+        if message.channel.name != 'lobby' and message.channel.name != 'add-songs' and message.channel.name != 'General' and message.channel.name != 'welcome':
 
             print(f"Message sent")
             print(f"User Message: {user_message}!")
@@ -95,7 +95,7 @@ async def on_message(message):
 
                 for channel in channels:
                     
-                    if channel.name != 'lobby' and channel.name != 'add-songs' and channel.name != 'General':
+                    if channel.name != 'lobby' and channel.name != 'add-songs' and channel.name != 'General' and channel.name != 'welcome':
                         await channel.send(embed = bot_message)
 
 
@@ -280,7 +280,7 @@ async def add(ctx):
 @client.command()
 async def reset(ctx):
     global channels
-    
+
     admin_role = discord.utils.get(ctx.guild.roles, name = 'Admin')
 
     if admin_role in ctx.author.roles:
