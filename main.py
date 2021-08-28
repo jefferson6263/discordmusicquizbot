@@ -5,8 +5,8 @@ from game import Game
 from user import User
 from discord.ext import commands
 from add_song import addSong
-import logging
-logging.basicConfig(level=logging.INFO)
+#import logging
+#logging.basicConfig(level=logging.INFO)
 
 intents = discord.Intents.default()
 intents.members = True
