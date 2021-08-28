@@ -4,6 +4,9 @@ from discord.ext import tasks
 import discord
 from play_song import play_song
 
+NUM_QUESTIONS = 10 
+TIMER_LENGTH = 30
+
 def load_songs():
 
     list = []
@@ -22,17 +25,18 @@ def load_songs():
 
 class Game:
     
-    def __init__(self, users, ctx):
+    def __init__(self, users, ctx, channels):
 
         self.active = False
         self.mode = 0
         self.question = 0
         self.songs = load_songs()
         self.current = self.songs.pop(0)
-        self.timer = 30
+        self.timer = TIMER_LENGTH
         self.users = users
         self.ctx = ctx
         self.vc = None
+        self.channels = channels
 
         print(self.current)
     
@@ -43,29 +47,59 @@ class Game:
     
             self.start_timer.stop()
 
-        channel = discord.utils.get(self.ctx.guild.channels, name="quiz-room")
+        for channel in self.channels:
 
-        if self.mode == 0 and self.timer == 30:
+            print(channel)
 
-            await self.ctx.guild.me.edit(nick=f"{self.timer} seconds left!")
-            if self.question == 0:
+            if channel.name == 'lobby' or channel.name == 'add-songs' or channel.name == 'General':
+
+                continue
+
+            if self.mode == 0 and self.timer == TIMER_LENGTH:
+
+                if self.question == 0:
+                    bot_message = discord.Embed(
+                        title = 'Round 1: Guess the Song (Audio)\n',
+                        description = 'You will be played a short audio clip.\n Guess the song and artist using the format:\n song by artist e.g diamonds by rihanna',
+                        colour = 0x00A2FF
+                    )
+                    await channel.send(embed = bot_message)
+
+                if self.timer == TIMER_LENGTH:
+                    bot_message = discord.Embed(
+                        title = f'Question {self.question+1} (Audio)',
+                        colour = 0x00A2FF
+                    )
+                    await channel.send(embed = bot_message)
+
+            elif self.mode == 0 and self.timer <= 0:
+
+                song_name = self.current_song_name().title()
+                song_artist = self.current_song_artist().title()
+
                 bot_message = discord.Embed(
-                    title = 'Round 1: Guess the Song (Audio)\n',
-                    description = 'You will be played a short audio clip.\n Guess the song and artist using the format:\n song by artist e.g diamonds by rihanna',
+                    title = "Time's Up!",
+                    description = f'The answer was {song_name} by {song_artist}',
                     colour = 0x00A2FF
                 )
+
+                bot_message.add_field(name='Leaderboard\n', value=self.leaderboard(), inline=False)
+
                 await channel.send(embed = bot_message)
 
-            if self.timer == 30:
-                bot_message = discord.Embed(
-                    title = f'Question {self.question+1} (Audio)',
-                    colour = 0x00A2FF
-                )
-                await channel.send(embed = bot_message)
+                if self.question < NUM_QUESTIONS:
 
-            self.timer -= 1
+                    winner = sorted(self.users, key=lambda x: x.points, reverse=True)[0]
 
-        elif self.timer > 0:
+                    bot_message = discord.Embed(
+                        title = "Game has Finished!",
+                        description = f'The winner is {winner} with {winner.points} points!',
+                        colour = 0x00A2FF
+                    )
+
+                    bot_message.add_field(name='Final Leaderboard\n', value=self.leaderboard(), inline=False)
+
+        if self.timer > 0:
 
             await self.ctx.guild.me.edit(nick=f"{self.timer} seconds left!")
             self.timer -= 1
@@ -74,23 +108,10 @@ class Game:
             
             await self.ctx.guild.me.edit(nick=f"{self.timer} seconds left!")
 
-            song_name = self.current_song_name().title()
-            song_artist = self.current_song_artist().title()
-
-            bot_message = discord.Embed(
-                title = "Time's Up!",
-                description = f'The answer was {song_name} by {song_artist}',
-                colour = 0x00A2FF
-            )
-
-            bot_message.add_field(name='Leaderboard\n', value=self.leaderboard(), inline=False)
-
-            await channel.send(embed = bot_message)
-
             self.reset_user_guesses()
             self.next_song()
 
-            if self.question < 10:
+            if self.question < NUM_QUESTIONS:
 
                 self.question += 1
 
@@ -105,19 +126,9 @@ class Game:
                 self.mode += 1
                 '''
 
-                winner = sorted(self.users, key=lambda x: x.points, reverse=True)[0]
-
-                bot_message = discord.Embed(
-                    title = "Game has Finished!",
-                    description = f'The winner is {winner} with {winner.points} points!',
-                    colour = 0x00A2FF
-                )
-
-                bot_message.add_field(name='Final Leaderboard\n', value=self.leaderboard(), inline=False)
-                
                 await self.vc.disconnect()
 
-            self.timer = 30
+            self.timer = TIMER_LENGTH
         
         else: 
 

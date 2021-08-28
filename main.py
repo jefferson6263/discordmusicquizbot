@@ -5,6 +5,9 @@ from game import Game
 from user import User
 from discord.ext import commands
 from add_song import addSong
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 intents = discord.Intents.default()
 intents.members = True
@@ -24,9 +27,9 @@ async def on_ready():
 async def on_message(message):
 
     username = str(message.author).split('#')[0]
-    user_message = str(message.content).split('by')
-    user_message = remove_leading_and_trailing_spaces(user_message)
+    user_message = remove_leading_and_trailing_spaces(str(message.content))
     channel = str(message.channel.name)
+
     print(f'{username}: {user_message} ({channel})') # debug
 
     if message.author == client.user: # bot doesn't respond to itself
@@ -169,8 +172,20 @@ async def join(ctx):
 
         await ctx.send(embed = bot_message)
         await member.add_roles(role)
-        
 
+        admin_role = discord.utils.get(ctx.guild.roles, name="Admin")
+
+        overwrites = {
+
+            ctx.guild.default_role: discord.PermissionOverwrite(read_messages = False),
+            ctx.guild.me: discord.PermissionOverwrite(read_messages = True),
+            admin_role: discord.PermissionOverwrite(read_messages = True),
+            ctx.author: discord.PermissionOverwrite(read_messages = True)
+
+        }
+
+        await ctx.guild.create_text_channel(f"{username}'s-quiz-room", overwrites = overwrites)
+        
     elif ctx.channel.name == 'lobby' and username_in_list(username, users) == True:
 
         bot_message = discord.Embed(
@@ -259,17 +274,15 @@ async def start(ctx):
 
     if ctx.channel.name == 'lobby' and is_user_game_leader(ctx.author, users) == True:
 
-        game = Game(users, ctx)
+        game = Game(users, ctx, await ctx.guild.fetch_channels())
     
         bot_message = discord.Embed(
             title = 'Game has Started!',
-            description = "Move to the text channel 'quiz-room' to play\n",
+            description = "Move to the text channel 'username's-quiz-room' to play\n",
             colour = 0x00A2FF
         )
 
         await ctx.send(embed = bot_message)
-        await ctx.guild.create_text_channel('quiz-room')
-
         await game.start_game()
 
 @client.command(name='addsong',help='add a song to the song bank')
@@ -290,14 +303,22 @@ async def reset(ctx):
         if game != None:
 
             game.stop_game()
+        
+        channels = await ctx.guild.fetch_channels()
 
-        channel = discord.utils.get(ctx.guild.channels, name="quiz-room")
+        for channel in channels:
+
+            if channel.name != 'lobby' and channel.name != 'add-songs' and channel.name != 'General':
+                await channel.delete()
+
         role = discord.utils.get(ctx.guild.roles, name = 'Joined Players')
 
+        '''
         if channel != None:
             await channel.delete()
         else:
             print("Channel 'quiz room' doesn't exist")
+        '''
 
         members = await ctx.guild.fetch_members().flatten() # fetches all guild members and then flattens into a list of member objects
 
