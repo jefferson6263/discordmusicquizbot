@@ -39,10 +39,6 @@ async def on_message(message):
 
         return
 
-    for msg in user_message: # debug
-
-        print(msg)
-
     if game != None:
 
         if message.channel.name != 'lobby' and message.channel.name != 'add-songs' and message.channel.name != 'General':
@@ -56,7 +52,7 @@ async def on_message(message):
 
                 if user.get_guessed_artist() == False and user.get_guessed_song() == False:
                     
-                    points = game.get_timer()
+                    points = game.get_timer() + 2
                     user.add_points(points)
                     user.set_guessed_song(True)
                     user.set_guessed_artist(True)
@@ -105,22 +101,22 @@ async def on_message(message):
 
     await client.process_commands(message)
 
-@client.command(name='test',help='displays help menu')
+@client.command(name='guide',help='displays guide on features and how to play')
 async def help(ctx):
         
     skip = discord.Embed(
-        title = "Help Menu for Dummies",
-        description = f"Welcome to Jono and Jeff's Music Trivia Bot!! Here is a quick guide.",
+        title = "An explanation of Jono and Jeff's Music Trivia",
+        description = f"Welcome to Jono and Jeff's Music Trivia Bot! Here is a quick guide.",
         colour = 0x2F329F
     )
 
     skip.add_field(name='How it works', value="In this Trivia you will be tested in 4 different categories, Audio, Artist, Album Cover and Lyrics.", inline=False)
-    skip.add_field(name='Audio', value="In this Category you will be played a short audio clip and you will have identify the Song Name and/or Artist. Bonus marks if you get both!!", inline=False)
-    skip.add_field(name='Artist', value="In this Category you will be shown a picture of a music Artist and you will have to identify them.", inline=False)
-    skip.add_field(name='Album Cover', value="In this Category you will be shown a picture of an Album Cover and you will have to identify the Album name and/or Artist.", inline=False)
-    skip.add_field(name='Lyrics', value="In this Category you will be shown lyrics from a song and you will have identify the Song Name and/or Artist. Bonus marks if you get both!!", inline=False)
-    skip.add_field(name='How to Answer', value="You answer questions simply by typing in the quiz-room chat when a game is active. When answering questions that require a song name and artist, make sure to include a 'by' between the song name and artist to make sure you get bonus marks. Eg: diamonds by rihanna.", inline=False)
-    skip.add_field(name='How do I gain points?', value="You gain points by typing the correct answer in the quiz-room chat. Points are allocated on a first come first served basis.", inline=False)
+    skip.add_field(name='Round 1 (Audio)', value="In this Category you will be played a short audio clip and you will have identify the Song Name and/or Artist. Bonus marks if you get both at once!", inline=False)
+    skip.add_field(name='Round 2 (Artist) [Not implemented]', value="In this Category you will be shown a picture of a music Artist and you will have to identify them.", inline=False)
+    skip.add_field(name='Round 3 (Album Cover) [Not implemented]', value="In this Category you will be shown a picture of an Album Cover and you will have to identify the Album name and/or Artist.", inline=False)
+    skip.add_field(name='Round 4 (Lyrics) [Not implemented]', value="In this Category you will be shown lyrics from a song and you will have identify the Song Name and/or Artist. Bonus marks if you get both at once!", inline=False)
+    skip.add_field(name='How do I gain points?', value="You gain points by entering the correct answer in the username's-quiz-room chat.\n\n As long as the correct song/artist/album is contained within your message, you will receive points!\n\n Points are allocated depending on how much time is left, so answer as quickly as possible!", inline=False)
+    skip.set_thumbnail(url="https://i.imgur.com/VLvORwa.jpg")
     await ctx.message.channel.send(embed = skip)
         
 
@@ -283,7 +279,8 @@ async def add(ctx):
 
 @client.command()
 async def reset(ctx):
-
+    global channels
+    
     admin_role = discord.utils.get(ctx.guild.roles, name = 'Admin')
 
     if admin_role in ctx.author.roles:
@@ -296,17 +293,10 @@ async def reset(ctx):
 
         for channel in channels:
 
-            if channel.name != 'lobby' and channel.name != 'add-songs' and channel.name != 'General':
+            if channel.name != 'lobby' and channel.name != 'add-songs' and channel.name != 'General' and channel.name != 'welcome':
                 await channel.delete()
 
         role = discord.utils.get(ctx.guild.roles, name = 'Joined Players')
-
-        '''
-        if channel != None:
-            await channel.delete()
-        else:
-            print("Channel 'quiz room' doesn't exist")
-        '''
 
         members = await ctx.guild.fetch_members().flatten() # fetches all guild members and then flattens into a list of member objects
 
@@ -319,6 +309,12 @@ async def reset(ctx):
 
         await ctx.me.edit(nick=ctx.me.name)
 
+@client.command()
+async def send_image(ctx):
+
+    with open('jeff_and_jono.jpg', 'rb') as f:
+        picture = discord.File(f)
+        await ctx.channel.send(file=picture)
 
 client.run(TOKEN)
 
