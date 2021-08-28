@@ -6,7 +6,6 @@ from user import User
 from discord.ext import commands
 from add_song import addSong
 import logging
-
 logging.basicConfig(level=logging.INFO)
 
 intents = discord.Intents.default()
@@ -17,6 +16,7 @@ client = commands.Bot(command_prefix='%', intents = intents)
 
 users = []
 game = None
+channels = None # needs to be global because it causes server lag?
 
 @client.event
 async def on_ready():
@@ -26,9 +26,12 @@ async def on_ready():
 @client.event
 async def on_message(message):
 
+    global channels
+
     username = str(message.author).split('#')[0]
-    user_message = remove_leading_and_trailing_spaces(str(message.content))
+    user_message = message.content
     channel = str(message.channel.name)
+    bot_message = None
 
     print(f'{username}: {user_message} ({channel})') # debug
 
@@ -42,79 +45,63 @@ async def on_message(message):
 
     if game != None:
 
-        for msg in user_message:
+        if message.channel.name != 'lobby' and message.channel.name != 'add-songs' and message.channel.name != 'General':
 
-            if msg == game.current_song_name() or msg == game.current_song_artist():
-
-                await message.delete()
-                break
-
-        if message.channel.name == 'quiz-room':
-
+            print(f"Message sent")
+            print(f"User Message: {user_message}!")
             user = game.get_user(username)
 
-            try:
+            if game.current_song_name() in user_message and game.current_song_artist() in user_message:
+                print(f"Song is Correct and Artist is Correct")
 
-                if user_message[0].lower() == game.current_song_name() and user_message[1].lower() == game.current_song_artist():
+                if user.get_guessed_artist() == False and user.get_guessed_song() == False:
                     
-                    if user.get_guessed_artist() == False and user.get_guessed_song() == False:
-                        
-                        points = game.get_timer()
-                        user.add_points(points)
-                        user.set_guessed_song(True)
-                        user.set_guessed_artist(True)
-
-                        bot_message = discord.Embed(
-                            description = f'{username} has guessed the correct SONG and ARTIST! +{points:.1f} points',
-                            colour = 0x00FF08
-                        )
-
-                        await message.channel.send(embed = bot_message)
-                        await message.author.edit(nick=f"[{user.get_points():.1f}] {username}")
-
-                elif user_message[1].lower() == game.current_song_artist() and user.get_guessed_artist() == False:
-                    
-                    points = game.get_timer() / 2
-                    user.add_points(points)
-                    user.set_guessed_artist(True)
-
-                    bot_message = discord.Embed(
-                        description = f'{username} has guessed the correct ARTIST! +{points:.1f} points',
-                        colour = 0xFF9B00
-                    )
-
-                    await message.channel.send(embed = bot_message) 
-                    await message.author.edit(nick=f"[{user.get_points():.1f}] {username}")
-            
-            except:
-
-                if user_message[0].lower() == game.current_song_name() and user.get_guessed_song() == False:
-
-                    points = game.get_timer() / 2
+                    points = game.get_timer()
                     user.add_points(points)
                     user.set_guessed_song(True)
-
-                    bot_message = discord.Embed(
-                        description = f'{username} has guessed the correct SONG! +{points:.1f} points',
-                        colour = 0xFF9B00
-                    )
-
-                    await message.channel.send(embed = bot_message)
-                    await message.author.edit(nick=f"[{user.get_points():.1f}] {username}")
-                
-                elif user_message[0].lower() == game.current_song_artist() and user.get_guessed_artist() == False:
-
-                    points = game.get_timer() / 2
-                    user.add_points(points)
                     user.set_guessed_artist(True)
 
                     bot_message = discord.Embed(
-                        description = f'{username} has guessed the correct ARTIST! +{points:.1f} points',
-                        colour = 0xFF9B00
+                        description = f'{username} has guessed the correct SONG and ARTIST! +{points:.1f} points',
+                        colour = 0x00FF08
                     )
 
-                    await message.channel.send(embed = bot_message)
                     await message.author.edit(nick=f"[{user.get_points():.1f}] {username}")
+
+            elif game.current_song_artist() in user_message and user.get_guessed_artist() == False:
+                
+                points = game.get_timer() / 2
+                user.add_points(points)
+                user.set_guessed_artist(True)
+
+                bot_message = discord.Embed(
+                    description = f'{username} has guessed the correct ARTIST! +{points:.1f} points',
+                    colour = 0xFF9B00
+                )
+
+                await message.author.edit(nick=f"[{user.get_points():.1f}] {username}")
+
+            elif game.current_song_name() in user_message and user.get_guessed_song() == False:
+
+                points = game.get_timer() / 2
+                user.add_points(points)
+                user.set_guessed_song(True)
+
+                bot_message = discord.Embed(
+                    description = f'{username} has guessed the correct SONG! +{points:.1f} points',
+                    colour = 0xFF9B00
+                )
+
+                
+                await message.author.edit(nick=f"[{user.get_points():.1f}] {username}")
+        
+            if bot_message != None:
+
+                for channel in channels:
+                    
+                    if channel.name != 'lobby' and channel.name != 'add-songs' and channel.name != 'General':
+                        await channel.send(embed = bot_message)
+
 
     await client.process_commands(message)
 
@@ -270,11 +257,12 @@ async def players(ctx):
 
 @client.command()
 async def start(ctx):
-    global users, game
+    global users, game, channels
 
     if ctx.channel.name == 'lobby' and is_user_game_leader(ctx.author, users) == True:
 
-        game = Game(users, ctx, await ctx.guild.fetch_channels())
+        channels = await ctx.guild.fetch_channels()
+        game = Game(users, ctx, channels)
     
         bot_message = discord.Embed(
             title = 'Game has Started!',

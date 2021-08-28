@@ -49,8 +49,6 @@ class Game:
 
         for channel in self.channels:
 
-            print(channel)
-
             if channel.name == 'lobby' or channel.name == 'add-songs' or channel.name == 'General':
 
                 continue
@@ -60,7 +58,7 @@ class Game:
                 if self.question == 0:
                     bot_message = discord.Embed(
                         title = 'Round 1: Guess the Song (Audio)\n',
-                        description = 'You will be played a short audio clip.\n Guess the song and artist using the format:\n song by artist e.g diamonds by rihanna',
+                        description = 'You will be played a short audio clip.\n Guess the song and artist',
                         colour = 0x00A2FF
                     )
                     await channel.send(embed = bot_message)
