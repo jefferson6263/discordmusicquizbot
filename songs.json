@@ -955,8 +955,8 @@
             "link": "Songs/Aitch x AJ Tracey - Rain Feat. Tay Keith.mp3"
         },
         {
-            "name": "brockhampton",
-            "artist": "sugar",
+            "name": "sugar",
+            "artist": "brockhampton",
             "lyrics": "blah blah blah",
             "link": "Songs/SUGAR - BROCKHAMPTON.mp3"
         },
@@ -1019,12 +1019,6 @@
             "artist": "martin garrix",
             "lyrics": "blah blah blah",
             "link": "Songs/Martin Garrix & Troye Sivan - There For You.mp3"
-        },
-        {
-            "name": "changes",
-            "artist": "xxxtentacion",
-            "lyrics": "blah blah blah",
-            "link": "Songs/XXXTENTACION - changes.mp3"
         },
         {
             "name": "fourfiveseconds",
