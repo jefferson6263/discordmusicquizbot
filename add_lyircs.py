@@ -1,5 +1,6 @@
 
 import json
+import time
 import sys
 import re
 
@@ -17,7 +18,7 @@ with open("songs.json","r+") as file:
     # looking through all songs stored in songs.json
     for song_dic in file_data["songs"]:
         # if song already has lyrics
-        if song_dic["lyrics"] == 'blah blah blah':
+        if song_dic["lyrics"] != 'blah blah blah':
             print("this song already has lyrics")
         else:
             song = genius.search_song(song_dic["name"], song_dic["artist"])
@@ -37,5 +38,6 @@ with open("songs.json","r+") as file:
         
             file.seek(0)
             json.dump(file_data, file, indent = 4)
+            time.sleep(2)
         
             
