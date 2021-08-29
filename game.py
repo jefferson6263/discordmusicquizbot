@@ -47,7 +47,7 @@ class Game:
 
             for channel in self.channels:
 
-                if channel.name == 'lobby' or channel.name == 'add-songs' or channel.name == 'General' or channel.name == 'welcome':
+                if channel.name == 'lobby' or channel.name == 'add-songs' or channel.name == 'General' or channel.name == 'welcome' or channel.name == 'past-games':
 
                     continue
 
@@ -95,6 +95,17 @@ class Game:
 
                         bot_message.add_field(name='Final Leaderboard\n', value=self.leaderboard(), inline=False)
                         await channel.send(embed = bot_message)
+
+                        past_games = await discord.utils.get(self.ctx.guild.channels, name = f"past-games")
+
+                        bot_message = discord.Embed(
+                            title = "Game has Finished!",
+                            description = f'The winner is {winner.username} with {winner.points} points!',
+                            colour = 0x00A2FF
+                        )
+
+                        bot_message.add_field(name='Final Leaderboard\n', value=self.leaderboard(), inline=False)
+                        await past_games.send(embed = bot_message)
 
             if self.timer > 0:
 

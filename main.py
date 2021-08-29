@@ -42,7 +42,7 @@ async def on_message(message):
 
     if game != None:
 
-        if message.channel.name != 'lobby' and message.channel.name != 'add-songs' and message.channel.name != 'General' and message.channel.name != 'welcome':
+        if message.channel.name != 'lobby' and message.channel.name != 'add-songs' and message.channel.name != 'General' and message.channel.name != 'welcome' and message.channel.name != 'past-games':
 
             print(f"Message sent")
             print(f"User Message: {user_message}!")
@@ -96,7 +96,7 @@ async def on_message(message):
 
                 for channel in channels:
                     
-                    if channel.name != 'lobby' and channel.name != 'add-songs' and channel.name != 'General' and channel.name != 'welcome':
+                    if channel.name != 'lobby' and channel.name != 'add-songs' and channel.name != 'General' and channel.name != 'welcome' and channel.name != 'past-games':
                         await channel.send(embed = bot_message)
 
 
@@ -420,7 +420,7 @@ async def reset(ctx):
 
         for channel in channels:
 
-            if channel.name != 'lobby' and channel.name != 'add-songs' and channel.name != 'General' and channel.name != 'welcome':
+            if channel.name != 'lobby' and channel.name != 'add-songs' and channel.name != 'General' and channel.name != 'welcome' and channel.name != 'past-games':
                 await channel.delete()
 
         role = discord.utils.get(ctx.guild.roles, name = 'Joined Players')
