@@ -427,12 +427,6 @@
             "link": "Songs/Taylor Swift - New Romantics.mp3"
         },
         {
-            "name": "wildest dreams",
-            "artist": "taylor swift",
-            "lyrics": "blah blah blah",
-            "link": "Songs/Taylor Swift - Wildest Dreams.mp3"
-        },
-        {
             "name": "dancing queen",
             "artist": "abba",
             "lyrics": "blah blah blah",
@@ -469,7 +463,7 @@
             "link": "Songs/Coldplay - Viva La Vida.mp3"
         },
         {
-            "name": "rather be ft. jess glynne",
+            "name": "rather be",
             "artist": "clean bandit",
             "lyrics": "blah blah blah",
             "link": "Songs/Clean Bandit - Rather Be ft. Jess Glynne.mp3"
@@ -679,12 +673,6 @@
             "link": "Songs/Calvin Harris - Blame ft. John Newman.mp3"
         },
         {
-            "name": "slide",
-            "artist": "calvin harris",
-            "lyrics": "blah blah blah",
-            "link": "Songs/Calvin Harris - Slide (Official Audio) ft. Frank Ocean, Migos.mp3"
-        },
-        {
             "name": "summer",
             "artist": "calvin harris",
             "lyrics": "blah blah blah",
@@ -829,12 +817,6 @@
             "link": "Songs/5 Seconds of Summer - Lie To Me.mp3"
         },
         {
-            "name": "the a team",
-            "artist": "ed sheeran",
-            "lyrics": "blah blah blah",
-            "link": "Songs/Ed Sheeran - The A Team.mp3"
-        },
-        {
             "name": "photograph",
             "artist": "ed sheeran",
             "lyrics": "blah blah blah",
@@ -913,12 +895,6 @@
             "link": "Songs/Owl City & Carly Rae Jepsen - Good Time.mp3"
         },
         {
-            "name": "party in the usa",
-            "artist": "miley cyrus",
-            "lyrics": "blah blah blah",
-            "link": "Songs/Miley Cyrus - Party In The U.S.A..mp3"
-        },
-        {
             "name": "blank space",
             "artist": "taylor swift",
             "lyrics": "blah blah blah",
@@ -929,12 +905,6 @@
             "artist": "taylor swift",
             "lyrics": "blah blah blah",
             "link": "Songs/Taylor Swift - I Knew You Were Trouble.mp3"
-        },
-        {
-            "name": "in the summertime",
-            "artist": "mungo jerry",
-            "lyrics": "blah blah blah",
-            "link": "Songs/Mungo Jerry - In the Summertime (Official Lyrics Video).mp3"
         },
         {
             "name": "please don't go",
@@ -949,22 +919,10 @@
             "link": "Songs/Chet Faker, Marcus Marr - The Trouble With Us.mp3"
         },
         {
-            "name": "now and later",
-            "artist": "sage the gemini",
-            "lyrics": "blah blah blah",
-            "link": "Songs/Sage the Gemini - Now & Later.mp3"
-        },
-        {
             "name": "all my friends",
             "artist": "snakehips",
             "lyrics": "blah blah blah",
             "link": "Songs/Snakehips - All My Friends  ft. Tinashe, Chance the Rapper.mp3"
-        },
-        {
-            "name": "oh my",
-            "artist": "dappy",
-            "lyrics": "blah blah blah",
-            "link": "Songs/Dappy - Oh My ft. Ay Em.mp3"
         },
         {
             "name": "everywhere",
@@ -1043,12 +1001,6 @@
             "artist": "lewis capaldi",
             "lyrics": "blah blah blah",
             "link": "Songs/Lewis Capaldi - Before You Go.mp3"
-        },
-        {
-            "name": "don't call me up",
-            "artist": "mabel",
-            "lyrics": "blah blah blah",
-            "link": "Songs/Mabel - Don't Call Me Up.mp3"
         },
         {
             "name": "paris in the rain",
@@ -1223,7 +1175,390 @@
             "artist": "bts",
             "lyrics": "blah blah blah",
             "link": "Songs/BTS 'Butter' Official MV.mp3"
+        },
+        {
+            "name": "heaven",
+            "artist": "troye sivan",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Troye Sivan - HEAVEN  ft. Betty Who.mp3"
+        },
+        {
+            "name": "paris",
+            "artist": "the chainsmokers",
+            "lyrics": "blah blah blah",
+            "link": "Songs/The Chainsmokers - Paris.mp3"
+        },
+        {
+            "name": "electric",
+            "artist": "katy perry",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Katy Perry - Electric.mp3"
+        },
+        {
+            "name": "art of love",
+            "artist": "guy sebastian",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Guy Sebastian - Art Of Love.mp3"
+        },
+        {
+            "name": "blackbird",
+            "artist": "the beatles",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Blackbird (Remastered 2009).mp3"
+        },
+        {
+            "name": "wake me up when september ends",
+            "artist": "green day",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Green Day - Wake Me Up When September Ends.mp3"
+        },
+        {
+            "name": "hollaback girl",
+            "artist": "gwen stefani",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Gwen Stefani - Hollaback Girl.mp3"
+        },
+        {
+            "name": "ignition",
+            "artist": "r. kelly",
+            "lyrics": "blah blah blah",
+            "link": "Songs/R. Kelly - Ignition (Remix).mp3"
+        },
+        {
+            "name": "black and yellow",
+            "artist": "wiz khalifa",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Wiz Khalifa - Black And Yellow.mp3"
+        },
+        {
+            "name": "stronger",
+            "artist": "kanye west",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Kanye West - Stronger.mp3"
+        },
+        {
+            "name": "crank that",
+            "artist": "soulja boy",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Soulja Boy Tell'em - Crank That (Soulja Boy).mp3"
+        },
+        {
+            "name": "riptide",
+            "artist": "vance joy",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Vance Joy - Riptide (Lyrics).mp3"
+        },
+        {
+            "name": "the real slim shady",
+            "artist": "eminem",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Eminem - The Real Slim Shady (Official Video - Clean Version).mp3"
+        },
+        {
+            "name": "lose yourself",
+            "artist": "eminem",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Eminem - Lose Yourself  (Explicit).mp3"
+        },
+        {
+            "name": "waka waka",
+            "artist": "shakira",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Shakira - Waka Waka (This Time for Africa) (The Official 2010 FIFA World Cup\u2122 Song).mp3"
+        },
+        {
+            "name": "scream & shout",
+            "artist": "will.i.am",
+            "lyrics": "blah blah blah",
+            "link": "Songs/will.i.am - Scream & Shout ft. Britney Spears.mp3"
+        },
+        {
+            "name": "rock your body",
+            "artist": "justin timberlake",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Justin Timberlake - Rock Your Body (Video).mp3"
+        },
+        {
+            "name": "ms. jackson",
+            "artist": "outkast",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Outkast - Ms. Jackson (Official HD Video).mp3"
+        },
+        {
+            "name": "temperature",
+            "artist": "sean paul",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Sean Paul - Temperature.mp3"
+        },
+        {
+            "name": "toxic",
+            "artist": "britney spears",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Britney Spears - Toxic (Official HD Video).mp3"
+        },
+        {
+            "name": "no scrubs",
+            "artist": "tlc",
+            "lyrics": "blah blah blah",
+            "link": "Songs/TLC - No Scrubs.mp3"
+        },
+        {
+            "name": "survivor",
+            "artist": "destiny's child",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Destiny's Child - Survivor.mp3"
+        },
+        {
+            "name": "hey ya",
+            "artist": "outkast",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Outkast - Hey Ya! (Official HD Video).mp3"
+        },
+        {
+            "name": "buy u a drank",
+            "artist": "t-pain",
+            "lyrics": "blah blah blah",
+            "link": "Songs/T-Pain - Buy U A Drank (Shawty Snappin') ft. Yung Joc.mp3"
+        },
+        {
+            "name": "battle scars",
+            "artist": "guy sebastian",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Guy Sebastian - Battle Scars ft. Lupe Fiasco.mp3"
+        },
+        {
+            "name": "beautiful",
+            "artist": "christina aguilera",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Christina Aguilera - Beautiful.mp3"
+        },
+        {
+            "name": "hey, soul sister",
+            "artist": "train",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Train - Hey, Soul Sister.mp3"
+        },
+        {
+            "name": "halo",
+            "artist": "beyonce",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Beyonce - Halo.mp3"
+        },
+        {
+            "name": "single ladies",
+            "artist": "beyonce",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Beyonce - Single Ladies (Put a Ring on It) (Video Version).mp3"
+        },
+        {
+            "name": "so what",
+            "artist": "p!nk",
+            "lyrics": "blah blah blah",
+            "link": "Songs/P!nk - So What.mp3"
+        },
+        {
+            "name": "stronger",
+            "artist": "kelly clarkson",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Kelly Clarkson - Stronger (What Doesn't Kill You).mp3"
+        },
+        {
+            "name": "without me",
+            "artist": "eminem",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Eminem - Without Me.mp3"
+        },
+        {
+            "name": "slide",
+            "artist": "calvin harris",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Calvin Harris - Slide (Official Audio) ft. Frank Ocean, Migos.mp3"
+        },
+        {
+            "name": "sofia",
+            "artist": "clairo",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Clairo - Sofia.mp3"
+        },
+        {
+            "name": "pretty girl",
+            "artist": "clairo",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Clairo - Pretty Girl.mp3"
+        },
+        {
+            "name": "supalonely",
+            "artist": "benee",
+            "lyrics": "blah blah blah",
+            "link": "Songs/BENEE - Supalonely ft. Gus Dapperton.mp3"
+        },
+        {
+            "name": "glitter",
+            "artist": "benee",
+            "lyrics": "blah blah blah",
+            "link": "Songs/BENEE - Glitter.mp3"
+        },
+        {
+            "name": "freak",
+            "artist": "doja cat",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Doja Cat - Freak.mp3"
+        },
+        {
+            "name": "the weekend",
+            "artist": "sza",
+            "lyrics": "blah blah blah",
+            "link": "Songs/SZA - The Weekend.mp3"
+        },
+        {
+            "name": "september",
+            "artist": "earth wind and fire",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Earth, Wind & Fire - September.mp3"
+        },
+        {
+            "name": "stargazing",
+            "artist": "the neighbourhood",
+            "lyrics": "blah blah blah",
+            "link": "Songs/The Neighbourhood - Stargazing.mp3"
+        },
+        {
+            "name": "505",
+            "artist": "arctic monkeys",
+            "lyrics": "blah blah blah",
+            "link": "Songs/505.mp3"
+        },
+        {
+            "name": "deja vu",
+            "artist": "post malone",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Deja Vu.mp3"
+        },
+        {
+            "name": "me and my broken heart",
+            "artist": "rixton",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Rixton - Me and My Broken Heart.mp3"
+        },
+        {
+            "name": "dear maria, count me in",
+            "artist": "all time low",
+            "lyrics": "blah blah blah",
+            "link": "Songs/All Time Low - Dear Maria, Count Me In.mp3"
+        },
+        {
+            "name": "how you remind me",
+            "artist": "nickelback",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Nickelback - How You Remind Me [OFFICIAL VIDEO].mp3"
+        },
+        {
+            "name": "caroline",
+            "artist": "amine",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Amine - Caroline.mp3"
+        },
+        {
+            "name": "best friend",
+            "artist": "saweetie",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Saweetie - Best Friend (feat. Doja Cat).mp3"
+        },
+        {
+            "name": "dior",
+            "artist": "pop smoke",
+            "lyrics": "blah blah blah",
+            "link": "Songs/POP SMOKE - DIOR (OFFICIAL VIDEO).mp3"
+        },
+        {
+            "name": "golden",
+            "artist": "harry styles",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Harry Styles - Golden.mp3"
+        },
+        {
+            "name": "92 explorer",
+            "artist": "post malone",
+            "lyrics": "blah blah blah",
+            "link": "Songs/92 Explorer.mp3"
+        },
+        {
+            "name": "i miss you",
+            "artist": "blink-182",
+            "lyrics": "blah blah blah",
+            "link": "Songs/blink-182 - I Miss You.mp3"
+        },
+        {
+            "name": "in my head",
+            "artist": "jason derulo",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Jason Derulo - In My Head.mp3"
+        },
+        {
+            "name": "love me less",
+            "artist": "max",
+            "lyrics": "blah blah blah",
+            "link": "Songs/MAX - Love Me Less (feat. Quinn XCII).mp3"
+        },
+        {
+            "name": "greece",
+            "artist": "dj khaled",
+            "lyrics": "blah blah blah",
+            "link": "Songs/DJ Khaled ft. Drake - GREECE (Official Visualizer).mp3"
+        },
+        {
+            "name": "i wanna see some ass",
+            "artist": "jack harlow",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Jack Harlow - I WANNA SEE SOME ASS.mp3"
+        },
+        {
+            "name": "beggin'",
+            "artist": "maneskin",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Maneskin - Beggin' (Lyrics).mp3"
+        },
+        {
+            "name": "baby i'm yours",
+            "artist": "breakbot",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Breakbot - Baby I'm Yours (feat. Irfane).mp3"
+        },
+        {
+            "name": "never gonna give you up",
+            "artist": "rick astley",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Rick Astley - Never Gonna Give You Up.mp3"
+        },
+        {
+            "name": "fireflies",
+            "artist": "owl city",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Owl City - Fireflies.mp3"
+        },
+        {
+            "name": "bohemian rhapsody",
+            "artist": "queen",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Queen - Bohemian Rhapsody (Official Video Remastered).mp3"
+        },
+        {
+            "name": "we will rock you",
+            "artist": "queen",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Queen - We Will Rock You.mp3"
+        },
+        {
+            "name": "we are the champions",
+            "artist": "queen",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Queen - We Are The Champions.mp3"
+        },
+        {
+            "name": "somebody to love",
+            "artist": "queen",
+            "lyrics": "blah blah blah",
+            "link": "Songs/Queen - Somebody To Love.mp3"
         }
-        
     ]
 }

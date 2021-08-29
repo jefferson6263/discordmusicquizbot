@@ -4,7 +4,7 @@ from discord.ext import tasks
 import discord
 from play_song import play_song
 
-NUM_QUESTIONS = 10
+NUM_QUESTIONS = 20
 TIMER_LENGTH = 30
 
 def load_songs():

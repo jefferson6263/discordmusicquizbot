@@ -29,7 +29,7 @@ async def on_message(message):
     global channels
 
     username = str(message.author).split('#')[0]
-    user_message = message.content
+    user_message = message.content.lower()
     channel = str(message.channel.name)
     bot_message = None
 
@@ -279,7 +279,7 @@ async def add(ctx):
 
 @client.command()
 async def reset(ctx):
-    global channels
+    global channels, users
 
     admin_role = discord.utils.get(ctx.guild.roles, name = 'Admin')
 
@@ -308,6 +308,8 @@ async def reset(ctx):
                 await member.remove_roles(role)
 
         await ctx.me.edit(nick=ctx.me.name)
+
+        users = []
 
 @client.command()
 async def send_image(ctx):
