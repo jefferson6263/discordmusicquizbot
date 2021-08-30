@@ -5,6 +5,7 @@ from game import Game
 from user import User
 from discord.ext import commands
 from add_song import addSong
+from add_artist import add_photo
 #import logging
 #logging.basicConfig(level=logging.INFO)
 
@@ -310,7 +311,15 @@ async def reset(ctx):
         await ctx.me.edit(nick=ctx.me.name)
 
         users = []
-
+        
+        
+@client.command()
+async def add_artist(ctx):
+    artist = str(ctx.message.content)
+    add_artist(artist)
+    await ctx.message.channel.send(f'{artist} has been added to the artist bank')
+        
+        
 @client.command()
 async def send_image(ctx):
 
