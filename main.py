@@ -1,3 +1,4 @@
+from collections import UserList
 from os import remove
 import discord
 from helper_functions import username_in_list, remove_leading_and_trailing_spaces, is_user_game_leader
@@ -5,6 +6,7 @@ from game import Game
 from user import User
 from discord.ext import commands
 from add_song import addSong
+from add_artist import add_photo
 #import logging
 #logging.basicConfig(level=logging.INFO)
 
@@ -41,7 +43,7 @@ async def on_message(message):
 
     if game != None:
 
-        if message.channel.name != 'lobby' and message.channel.name != 'add-songs' and message.channel.name != 'General' and message.channel.name != 'welcome':
+        if message.channel.name != 'lobby' and message.channel.name != 'add-songs' and message.channel.name != 'General' and message.channel.name != 'welcome' and message.channel.name != 'past-games':
 
             print(f"Message sent")
             print(f"User Message: {user_message}!")
@@ -95,11 +97,91 @@ async def on_message(message):
 
                 for channel in channels:
                     
-                    if channel.name != 'lobby' and channel.name != 'add-songs' and channel.name != 'General' and channel.name != 'welcome':
+                    if channel.name != 'lobby' and channel.name != 'add-songs' and channel.name != 'General' and channel.name != 'welcome' and channel.name != 'past-games':
                         await channel.send(embed = bot_message)
 
 
     await client.process_commands(message)
+
+@client.event
+async def on_reaction_add(reaction, user):
+
+    global users, game, channels
+
+    message = reaction.message
+    ctx = await client.get_context(message)
+    username = user.name.split('#')[0]
+    role = discord.utils.get(ctx.guild.roles, name = 'Joined Players')
+
+    if user.name != 'Quiz Bot':
+
+        if reaction.emoji == '⬆️' and username_in_list(username, users) == False:
+
+            await message.remove_reaction('⬆️', user)
+            users.append(User(username, False))
+
+            bot_message = discord.Embed(
+                title = 'Player has Joined',
+                description = f'{username} has joined the game!',
+                colour = 0x00FF08
+            )
+
+            await user.edit(nick=f"[0.0] {username}")
+
+            await ctx.send(embed = bot_message)
+            await user.add_roles(role)
+
+            admin_role = discord.utils.get(ctx.guild.roles, name="Admin")
+
+            overwrites = {
+
+                ctx.guild.default_role: discord.PermissionOverwrite(read_messages = False),
+                ctx.guild.me: discord.PermissionOverwrite(read_messages = True),
+                admin_role: discord.PermissionOverwrite(read_messages = True),
+                user: discord.PermissionOverwrite(read_messages = True)
+
+            }
+            
+            await ctx.guild.create_text_channel(f"{username}-quiz-room", overwrites = overwrites)
+        
+        elif reaction.emoji == '⬇️' and username_in_list(username, users) == True:
+
+            await message.remove_reaction('⬇️', user)
+
+            for u in users:
+
+                if u.username == user.name:
+                    
+                    print("User Removed")
+                    users.remove(u) 
+                    bot_message = discord.Embed(
+                        title = 'Player has Left',
+                        description = f'{username} has left the game!',
+                        colour = 0xFF0000
+                    )
+                    await ctx.send(embed = bot_message) 
+                    await user.remove_roles(role)
+                    await user.edit(nick=f"{username}")
+                    break
+
+            await discord.utils.get(ctx.guild.channels, name = f"{username}-quiz-room").delete()
+            await message.remove_reaction('⬇️', user)
+
+        elif reaction.emoji == '▶️' and is_user_game_leader(user, users):
+            
+            await message.remove_reaction('▶️', user)
+            channels = await ctx.guild.fetch_channels()
+            game = Game(users, ctx, channels)
+        
+            bot_message = discord.Embed(
+                title = 'Game has Started!',
+                description = "Move to the text channel 'username-quiz-room' to play\n",
+                colour = 0x00A2FF
+            )
+
+            await ctx.send(embed = bot_message)
+            await game.start_game()
+            await message.remove_reaction('▶️', user)
 
 @client.command(name='guide',help='displays guide on features and how to play')
 async def help(ctx):
@@ -126,8 +208,6 @@ async def join(ctx):
     username = str(ctx.author).split('#')[0]
     member = ctx.message.author
     role = discord.utils.get(ctx.guild.roles, name = 'Joined Players')
-
-    print('Checking')
 
     if ctx.channel.name == 'lobby' and username_in_list(username, users) == False:
 
@@ -269,6 +349,55 @@ async def start(ctx):
         await ctx.send(embed = bot_message)
         await game.start_game()
 
+@client.command()
+async def create(ctx):
+
+    global users
+
+    username = str(ctx.author).split('#')[0]
+    member = ctx.message.author
+    role = discord.utils.get(ctx.guild.roles, name = 'Joined Players')
+
+    if len(users) == 0:
+
+        users.append(User(username, True))
+        bot_message = discord.Embed(
+            title = f'A game has been created!',
+            description = f'⬆️ to join\n ⬇️ to leave\n ▶️ to start',
+            colour = 0x00FF08
+        )
+        
+        bot_message.set_thumbnail(url= ctx.author.avatar_url)
+        bot_message.set_author(name = f'👑 {username}')
+
+        for u in users:
+
+            print(f"Username: {u.username}")
+            print(f"Leader: {u.leader}")
+
+        await member.edit(nick=f"👑 [0.0] {username}")
+
+        sent_message = await ctx.send(embed = bot_message)
+
+        await sent_message.add_reaction("⬆️")
+        await sent_message.add_reaction("⬇️")
+        await sent_message.add_reaction("▶️")
+        await member.add_roles(role)
+
+        admin_role = discord.utils.get(ctx.guild.roles, name="Admin")
+
+        overwrites = {
+
+            ctx.guild.default_role: discord.PermissionOverwrite(read_messages = False),
+            ctx.guild.me: discord.PermissionOverwrite(read_messages = True),
+            admin_role: discord.PermissionOverwrite(read_messages = True),
+            ctx.author: discord.PermissionOverwrite(read_messages = True)
+
+        }
+
+        await ctx.guild.create_text_channel(f"{username}-quiz-room", overwrites = overwrites)
+
+
 @client.command(name='addsong',help='add a song to the song bank')
 async def add(ctx):
 
@@ -279,7 +408,6 @@ async def add(ctx):
 
 @client.command()
 async def reset(ctx):
-    global channels, users
 
     admin_role = discord.utils.get(ctx.guild.roles, name = 'Admin')
 
@@ -293,7 +421,7 @@ async def reset(ctx):
 
         for channel in channels:
 
-            if channel.name != 'lobby' and channel.name != 'add-songs' and channel.name != 'General' and channel.name != 'welcome':
+            if channel.name != 'lobby' and channel.name != 'add-songs' and channel.name != 'General' and channel.name != 'welcome' and channel.name != 'past-games':
                 await channel.delete()
 
         role = discord.utils.get(ctx.guild.roles, name = 'Joined Players')
@@ -310,7 +438,15 @@ async def reset(ctx):
         await ctx.me.edit(nick=ctx.me.name)
 
         users = []
-
+        
+        
+@client.command()
+async def add_artist(ctx):
+    artist = str(ctx.message.content)
+    message = add_photo(artist)
+    await ctx.message.channel.send(message)
+        
+        
 @client.command()
 async def send_image(ctx):
 
