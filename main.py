@@ -316,8 +316,8 @@ async def reset(ctx):
 @client.command()
 async def add_artist(ctx):
     artist = str(ctx.message.content)
-    add_artist(artist)
-    await ctx.message.channel.send(f'{artist} has been added to the artist bank')
+    message = add_photo(artist)
+    await ctx.message.channel.send(message)
         
         
 @client.command()

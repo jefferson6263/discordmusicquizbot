@@ -7,8 +7,17 @@ sys.path.append(r'C:\Users\Jefferson\AppData\Local\Packages\PythonSoftwareFounda
 from google_images_download import google_images_download   
 
 def add_photo(artist):
+    
+    with open("artist.json","r+") as file:
+        file_data = json.load(file)
+        for artist_dic in file_data["artist"]:
+            if artist_dic["name"] == artist:
+                return "Artist is already in artist bank"
+            
+            
     response = google_images_download.googleimagesdownload()   
-    artist = artist + "music artist"
+    search = artist + " music artist"
+    
     arguments = {"keywords":artist,
                  "limit":1,
                  "print_urls":True, 
@@ -18,16 +27,18 @@ def add_photo(artist):
 
     paths = response.download(arguments)   
     os.rename(str(paths[0][artist][0]),f'Artist/{artist}.png')
-    return f'Artist/{artist}.png'
+    
+    return "Artist added"
 
 
 # note this function was only ever ran once (already ran by jeff)
 # because it was used as a way to mass add picture of music artist
 # by scanning the songs.json file. After this function was ran
-# a command that allows admins to add artist was implemented.
+# a command that allows admins to add artist was implemented, 
+# so this function shouldn't be used, its here to look cool 
 if __name__=="__main__":
     
-    artist_list = ["bbno$", "one direction"]
+    artist_list = []
     
     songs_dic = open("songs.json","r")
     songs_dic_data = json.load(songs_dic)
@@ -42,10 +53,10 @@ if __name__=="__main__":
         
         for artist in artist_list:
     
-            path = add_photo(artist)
+            add_photo(artist)
             artist_dic = {
                 "name": artist,
-                "path": path
+                "path": f"Artist/{artist}"
             }
             
             file_data["artist"].append(artist_dic)
