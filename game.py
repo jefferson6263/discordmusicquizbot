@@ -4,7 +4,7 @@ from discord.ext import tasks
 import discord
 from play_song import play_song
 
-NUM_QUESTIONS = 20
+NUM_QUESTIONS = 1
 TIMER_LENGTH = 30
 
 def load_songs():
@@ -96,7 +96,7 @@ class Game:
                         bot_message.add_field(name='Final Leaderboard\n', value=self.leaderboard(), inline=False)
                         await channel.send(embed = bot_message)
 
-                        past_games = await discord.utils.get(self.ctx.guild.channels, name = f"past-games")
+                        past_games = discord.utils.get(self.ctx.guild.channels, name = f"past-games")
 
                         bot_message = discord.Embed(
                             title = "Game has Finished!",
