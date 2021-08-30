@@ -16,7 +16,6 @@ def add_photo(artist):
             
             
     response = google_images_download.googleimagesdownload()   
-    search = artist + " music artist"
     
     arguments = {"keywords":artist,
                  "limit":1,
@@ -36,6 +35,7 @@ def add_photo(artist):
 # by scanning the songs.json file. After this function was ran
 # a command that allows admins to add artist was implemented, 
 # so this function shouldn't be used, its here to look cool 
+"""
 if __name__=="__main__":
     
     artist_list = []
@@ -48,12 +48,11 @@ if __name__=="__main__":
     songs_dic.close()
     
     
-    with open("artist.json","r+") as file:
-        file_data = json.load(file)
-        
-        for artist in artist_list:
     
-            add_photo(artist)
+    for artist in artist_list:
+            
+        with open("artist.json","r+") as file:
+            file_data = json.load(file)
             artist_dic = {
                 "name": artist,
                 "path": f"Artist/{artist}"
@@ -62,7 +61,7 @@ if __name__=="__main__":
             file_data["artist"].append(artist_dic)
             file.seek(0)
             json.dump(file_data, file, indent = 4)
-            
+"""
  
         
     

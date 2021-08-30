@@ -38,6 +38,6 @@ with open("songs.json","r+") as file:
         
             file.seek(0)
             json.dump(file_data, file, indent = 4)
-            time.sleep(2)
+            time.sleep(3)
         
             

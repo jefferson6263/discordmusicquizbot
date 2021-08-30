@@ -1,5 +1,828 @@
 {
     "artist": [
-        
+        {
+            "name": "post malone",
+            "path": "Artist/post malone"
+        },
+        {
+            "name": "coldplay",
+            "path": "Artist/coldplay"
+        },
+        {
+            "name": "rich brian",
+            "path": "Artist/rich brian"
+        },
+        {
+            "name": "ed sheeran",
+            "path": "Artist/ed sheeran"
+        },
+        {
+            "name": "lil nas x",
+            "path": "Artist/lil nas x"
+        },
+        {
+            "name": "grant macdonald",
+            "path": "Artist/grant macdonald"
+        },
+        {
+            "name": "olivia rodrigo",
+            "path": "Artist/olivia rodrigo"
+        },
+        {
+            "name": "joji",
+            "path": "Artist/joji"
+        },
+        {
+            "name": "conan gray",
+            "path": "Artist/conan gray"
+        },
+        {
+            "name": "years and years",
+            "path": "Artist/years and years"
+        },
+        {
+            "name": "selena gomez",
+            "path": "Artist/selena gomez"
+        },
+        {
+            "name": "james arthur",
+            "path": "Artist/james arthur"
+        },
+        {
+            "name": "sabrina carpenter",
+            "path": "Artist/sabrina carpenter"
+        },
+        {
+            "name": "imagine dragons",
+            "path": "Artist/imagine dragons"
+        },
+        {
+            "name": "jason derulo",
+            "path": "Artist/jason derulo"
+        },
+        {
+            "name": "rihanna",
+            "path": "Artist/rihanna"
+        },
+        {
+            "name": "doja cat",
+            "path": "Artist/doja cat"
+        },
+        {
+            "name": "the kid laroi",
+            "path": "Artist/the kid laroi"
+        },
+        {
+            "name": "bbno$",
+            "path": "Artist/bbno$"
+        },
+        {
+            "name": "the chainsmokers",
+            "path": "Artist/the chainsmokers"
+        },
+        {
+            "name": "maroon 5",
+            "path": "Artist/maroon 5"
+        },
+        {
+            "name": "justin bieber",
+            "path": "Artist/justin bieber"
+        },
+        {
+            "name": "zara larsson",
+            "path": "Artist/zara larsson"
+        },
+        {
+            "name": "reece mastin",
+            "path": "Artist/reece mastin"
+        },
+        {
+            "name": "paramore",
+            "path": "Artist/paramore"
+        },
+        {
+            "name": "lauv",
+            "path": "Artist/lauv"
+        },
+        {
+            "name": "one direction",
+            "path": "Artist/one direction"
+        },
+        {
+            "name": "bruno mars",
+            "path": "Artist/bruno mars"
+        },
+        {
+            "name": "olly murs",
+            "path": "Artist/olly murs"
+        },
+        {
+            "name": "the wanted",
+            "path": "Artist/the wanted"
+        },
+        {
+            "name": "jessie j",
+            "path": "Artist/jessie j"
+        },
+        {
+            "name": "katy perry",
+            "path": "Artist/katy perry"
+        },
+        {
+            "name": "zayn",
+            "path": "Artist/zayn"
+        },
+        {
+            "name": "taylor swift",
+            "path": "Artist/taylor swift"
+        },
+        {
+            "name": "abba",
+            "path": "Artist/abba"
+        },
+        {
+            "name": "the fray",
+            "path": "Artist/the fray"
+        },
+        {
+            "name": "onerepublic",
+            "path": "Artist/onerepublic"
+        },
+        {
+            "name": "clean bandit",
+            "path": "Artist/clean bandit"
+        },
+        {
+            "name": "anne marie",
+            "path": "Artist/anne marie"
+        },
+        {
+            "name": "bazzi",
+            "path": "Artist/bazzi"
+        },
+        {
+            "name": "charlie puth",
+            "path": "Artist/charlie puth"
+        },
+        {
+            "name": "kyle",
+            "path": "Artist/kyle"
+        },
+        {
+            "name": "jeremy zucker",
+            "path": "Artist/jeremy zucker"
+        },
+        {
+            "name": "chris brown",
+            "path": "Artist/chris brown"
+        },
+        {
+            "name": "the black eyed peas",
+            "path": "Artist/the black eyed peas"
+        },
+        {
+            "name": "lady gaga",
+            "path": "Artist/lady gaga"
+        },
+        {
+            "name": "dnce",
+            "path": "Artist/dnce"
+        },
+        {
+            "name": "tyler the creator",
+            "path": "Artist/tyler the creator"
+        },
+        {
+            "name": "june",
+            "path": "Artist/june"
+        },
+        {
+            "name": "roddy ricch",
+            "path": "Artist/roddy ricch"
+        },
+        {
+            "name": "nicki minaj",
+            "path": "Artist/nicki minaj"
+        },
+        {
+            "name": "shawn mendes",
+            "path": "Artist/shawn mendes"
+        },
+        {
+            "name": "the script",
+            "path": "Artist/the script"
+        },
+        {
+            "name": "drake",
+            "path": "Artist/drake"
+        },
+        {
+            "name": "taio cruz",
+            "path": "Artist/taio cruz"
+        },
+        {
+            "name": "pitbull",
+            "path": "Artist/pitbull"
+        },
+        {
+            "name": "david guetta",
+            "path": "Artist/david guetta"
+        },
+        {
+            "name": "calvin harris",
+            "path": "Artist/calvin harris"
+        },
+        {
+            "name": "dua lipa",
+            "path": "Artist/dua lipa"
+        },
+        {
+            "name": "zedd",
+            "path": "Artist/zedd"
+        },
+        {
+            "name": "ariana grande",
+            "path": "Artist/ariana grande"
+        },
+        {
+            "name": "the vamps",
+            "path": "Artist/the vamps"
+        },
+        {
+            "name": "5 seconds of summer",
+            "path": "Artist/5 seconds of summer"
+        },
+        {
+            "name": "khalid",
+            "path": "Artist/khalid"
+        },
+        {
+            "name": "joel adams",
+            "path": "Artist/joel adams"
+        },
+        {
+            "name": "snakehips",
+            "path": "Artist/snakehips"
+        },
+        {
+            "name": "thirsty merc",
+            "path": "Artist/thirsty merc"
+        },
+        {
+            "name": "brockhampton",
+            "path": "Artist/brockhampton"
+        },
+        {
+            "name": "labrinth",
+            "path": "Artist/labrinth"
+        },
+        {
+            "name": "ant saunders",
+            "path": "Artist/ant saunders"
+        },
+        {
+            "name": "alec benjamin",
+            "path": "Artist/alec benjamin"
+        },
+        {
+            "name": "martin garrix",
+            "path": "Artist/martin garrix"
+        },
+        {
+            "name": "kodaline",
+            "path": "Artist/kodaline"
+        },
+        {
+            "name": "adele",
+            "path": "Artist/adele"
+        },
+        {
+            "name": "rita ora",
+            "path": "Artist/rita ora"
+        },
+        {
+            "name": "max",
+            "path": "Artist/max"
+        },
+        {
+            "name": "lizzo",
+            "path": "Artist/lizzo"
+        },
+        {
+            "name": "little mix",
+            "path": "Artist/little mix"
+        },
+        {
+            "name": "mariah carey",
+            "path": "Artist/mariah carey"
+        },
+        {
+            "name": "giveon",
+            "path": "Artist/giveon"
+        },
+        {
+            "name": "bts",
+            "path": "Artist/bts"
+        },
+        {
+            "name": "harry styles",
+            "path": "Artist/harry styles"
+        },
+        {
+            "name": "troye sivan",
+            "path": "Artist/troye sivan"
+        },
+        {
+            "name": "the beatles",
+            "path": "Artist/the beatles"
+        },
+        {
+            "name": "gwen stefani",
+            "path": "Artist/gwen stefani"
+        },
+        {
+            "name": "wiz khalifa",
+            "path": "Artist/wiz khalifa"
+        },
+        {
+            "name": "soulja boy",
+            "path": "Artist/soulja boy"
+        },
+        {
+            "name": "eminem",
+            "path": "Artist/eminem"
+        },
+        {
+            "name": "shakira",
+            "path": "Artist/shakira"
+        },
+        {
+            "name": "justin timberlake",
+            "path": "Artist/justin timberlake"
+        },
+        {
+            "name": "sean paul",
+            "path": "Artist/sean paul"
+        },
+        {
+            "name": "tlc",
+            "path": "Artist/tlc"
+        },
+        {
+            "name": "outkast",
+            "path": "Artist/outkast"
+        },
+        {
+            "name": "guy sebastian",
+            "path": "Artist/guy sebastian"
+        },
+        {
+            "name": "train",
+            "path": "Artist/train"
+        },
+        {
+            "name": "beyonce",
+            "path": "Artist/beyonce"
+        },
+        {
+            "name": "kelly clarkson",
+            "path": "Artist/kelly clarkson"
+        },
+        {
+            "name": "clairo",
+            "path": "Artist/clairo"
+        },
+        {
+            "name": "benee",
+            "path": "Artist/benee"
+        },
+        {
+            "name": "sza",
+            "path": "Artist/sza"
+        },
+        {
+            "name": "the neighbourhood",
+            "path": "Artist/the neighbourhood"
+        },
+        {
+            "name": "all time low",
+            "path": "Artist/all time low"
+        },
+        {
+            "name": "amine",
+            "path": "Artist/amine"
+        },
+        {
+            "name": "pop smoke",
+            "path": "Artist/pop smoke"
+        },
+        {
+            "name": "dj khaled",
+            "path": "Artist/dj khaled"
+        },
+        {
+            "name": "maneskin",
+            "path": "Artist/maneskin"
+        },
+        {
+            "name": "rick astley",
+            "path": "Artist/rick astley"
+        },
+        {
+            "name": "queen",
+            "path": "Artist/queen"
+        },
+        {
+            "name": "hot chelle rae",
+            "path": "Artist/hot chelle rae"
+        },
+        {
+            "name": "sean kingston",
+            "path": "Artist/sean kingston"
+        },
+        {
+            "name": "the weeknd",
+            "path": "Artist/the weeknd"
+        },
+        {
+            "name": "fleetwood mac",
+            "path": "Artist/fleetwood mac"
+        },
+        {
+            "name": "aitch",
+            "path": "Artist/aitch"
+        },
+        {
+            "name": "niall horan",
+            "path": "Artist/niall horan"
+        },
+        {
+            "name": "lewis capaldi",
+            "path": "Artist/lewis capaldi"
+        },
+        {
+            "name": "marshmello",
+            "path": "Artist/marshmello"
+        },
+        {
+            "name": "shawn  mendes",
+            "path": "Artist/shawn  mendes"
+        },
+        {
+            "name": "regard",
+            "path": "Artist/regard"
+        },
+        {
+            "name": "r. kelly",
+            "path": "Artist/r. kelly"
+        },
+        {
+            "name": "vance joy",
+            "path": "Artist/vance joy"
+        },
+        {
+            "name": "will.i.am",
+            "path": "Artist/will.i.am"
+        },
+        {
+            "name": "britney spears",
+            "path": "Artist/britney spears"
+        },
+        {
+            "name": "t-pain",
+            "path": "Artist/t-pain"
+        },
+        {
+            "name": "earth wind and fire",
+            "path": "Artist/earth wind and fire"
+        },
+        {
+            "name": "rixton",
+            "path": "Artist/rixton"
+        },
+        {
+            "name": "saweetie",
+            "path": "Artist/saweetie"
+        },
+        {
+            "name": "blink-182",
+            "path": "Artist/blink-182"
+        },
+        {
+            "name": "jack harlow",
+            "path": "Artist/jack harlow"
+        },
+        {
+            "name": "owl city",
+            "path": "Artist/owl city"
+        },
+        {
+            "name": "rudimental",
+            "path": "Artist/rudimental"
+        },
+        {
+            "name": "g.r.l.",
+            "path": "Artist/g.r.l."
+        },
+        {
+            "name": "mark ronson",
+            "path": "Artist/mark ronson"
+        },
+        {
+            "name": "billie eilish",
+            "path": "Artist/billie eilish"
+        },
+        {
+            "name": "shaed",
+            "path": "Artist/shaed"
+        },
+        {
+            "name": "kanye west",
+            "path": "Artist/kanye west"
+        },
+        {
+            "name": "the cure",
+            "path": "Artist/the cure"
+        },
+        {
+            "name": "tate mcrae",
+            "path": "Artist/tate mcrae"
+        },
+        {
+            "name": "ruel",
+            "path": "Artist/ruel"
+        },
+        {
+            "name": "destiny's child",
+            "path": "Artist/destiny's child"
+        },
+        {
+            "name": "p!nk",
+            "path": "Artist/p!nk"
+        },
+        {
+            "name": "nickelback",
+            "path": "Artist/nickelback"
+        },
+        {
+            "name": "green day",
+            "path": "Artist/green day"
+        },
+        {
+            "name": "christina aguilera",
+            "path": "Artist/christina aguilera"
+        },
+        {
+            "name": "arctic monkeys",
+            "path": "Artist/arctic monkeys"
+        },
+        {
+            "name": "breakbot",
+            "path": "Artist/breakbot"
+        },
+        {
+            "name": "chet faker",
+            "path": "Artist/chet faker"
+        },
+        {
+            "name": "forrestfire101",
+            "path": "Artist/forrestfire101"
+        },
+        {
+            "name": "jai waetford",
+            "path": "Artist/jai waetford"
+        },
+        {
+            "name": "keith urban",
+            "path": "Artist/keith urban"
+        },
+        {
+            "name": "blackbear",
+            "path": "Artist/blackbear"
+        },
+        {
+            "name": "whitney houston",
+            "path": "Artist/whitney houston"
+        },
+        {
+            "name": "michael jackson",
+            "path": "Artist/michael jackson"
+        },
+        {
+            "name": "daryl hall",
+            "path": "Artist/daryl hall"
+        },
+        {
+            "name": "lady antebellum",
+            "path": "Artist/lady antebellum"
+        },
+        {
+            "name": "neon trees",
+            "path": "Artist/neon trees"
+        },
+        {
+            "name": "enrique iglesias",
+            "path": "Artist/enrique iglesias"
+        },
+        {
+            "name": "jess glynne",
+            "path": "Artist/jess glynne"
+        },
+        {
+            "name": "b.o.b",
+            "path": "Artist/b.o.b"
+        },
+        {
+            "name": "the band perry",
+            "path": "Artist/the band perry"
+        },
+        {
+            "name": "starship",
+            "path": "Artist/starship"
+        },
+        {
+            "name": "cee lo green",
+            "path": "Artist/cee lo green"
+        },
+        {
+            "name": "sheck wes",
+            "path": "Artist/sheck wes"
+        },
+        {
+            "name": "luke hemmings",
+            "path": "Artist/luke hemmings"
+        },
+        {
+            "name": "big time rush",
+            "path": "Artist/big time rush"
+        },
+        {
+            "name": "john mayer",
+            "path": "Artist/john mayer"
+        },
+        {
+            "name": "ava max",
+            "path": "Artist/ava max"
+        },
+        {
+            "name": "big sean",
+            "path": "Artist/big sean"
+        },
+        {
+            "name": "hailee steinfeld",
+            "path": "Artist/hailee steinfeld"
+        },
+        {
+            "name": "meghan trainor",
+            "path": "Artist/meghan trainor"
+        },
+        {
+            "name": "rich the kid",
+            "path": "Artist/rich the kid"
+        },
+        {
+            "name": "george michael",
+            "path": "Artist/george michael"
+        },
+        {
+            "name": "alicia keys",
+            "path": "Artist/alicia keys"
+        },
+        {
+            "name": "jay sean",
+            "path": "Artist/jay sean"
+        },
+        {
+            "name": "arizona zervas",
+            "path": "Artist/arizona zervas"
+        },
+        {
+            "name": "role model",
+            "path": "Artist/role model"
+        },
+        {
+            "name": "ellie goulding",
+            "path": "Artist/ellie goulding"
+        },
+        {
+            "name": "pia mia",
+            "path": "Artist/pia mia"
+        },
+        {
+            "name": "carly rae jepsen",
+            "path": "Artist/carly rae jepsen"
+        },
+        {
+            "name": "desiigner",
+            "path": "Artist/desiigner"
+        },
+        {
+            "name": "g-eazy",
+            "path": "Artist/g-eazy"
+        },
+        {
+            "name": "aj tracey",
+            "path": "Artist/aj tracey"
+        },
+        {
+            "name": "tion wayne",
+            "path": "Artist/tion wayne"
+        },
+        {
+            "name": "far east movement",
+            "path": "Artist/far east movement"
+        },
+        {
+            "name": "lmfao",
+            "path": "Artist/lmfao"
+        },
+        {
+            "name": "duran duran",
+            "path": "Artist/duran duran"
+        },
+        {
+            "name": "counting crows",
+            "path": "Artist/counting crows"
+        },
+        {
+            "name": "michael buble",
+            "path": "Artist/michael buble"
+        },
+        {
+            "name": "glass animals",
+            "path": "Artist/glass animals"
+        },
+        {
+            "name": "nick jonas",
+            "path": "Artist/nick jonas"
+        },
+        {
+            "name": "lil pump",
+            "path": "Artist/lil pump"
+        },
+        {
+            "name": "zendaya",
+            "path": "Artist/zendaya"
+        },
+        {
+            "name": "dababy",
+            "path": "Artist/dababy"
+        },
+        {
+            "name": "timomatic",
+            "path": "Artist/timomatic"
+        },
+        {
+            "name": "delta goodrem",
+            "path": "Artist/delta goodrem"
+        },
+        {
+            "name": "daft punk",
+            "path": "Artist/daft punk"
+        },
+        {
+            "name": "prettymuch",
+            "path": "Artist/prettymuch"
+        },
+        {
+            "name": "demi lovato",
+            "path": "Artist/demi lovato"
+        },
+        {
+            "name": "billy joel",
+            "path": "Artist/billy joel"
+        },
+        {
+            "name": "ricky martin",
+            "path": "Artist/ricky martin"
+        },
+        {
+            "name": "cody simpson",
+            "path": "Artist/cody simpson"
+        },
+        {
+            "name": "backstreet boys",
+            "path": "Artist/backstreet boys"
+        },
+        {
+            "name": "cardi b",
+            "path": "Artist/cardi b"
+        },
+        {
+            "name": "tracy chapman",
+            "path": "Artist/tracy chapman"
+        },
+        {
+            "name": "kings of leon",
+            "path": "Artist/kings of leon"
+        },
+        {
+            "name": "nelly furtado",
+            "path": "Artist/nelly furtado"
+        },
+        {
+            "name": "mkto",
+            "path": "Artist/mkto"
+        }
     ]
 }
