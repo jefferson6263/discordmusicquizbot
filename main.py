@@ -43,9 +43,8 @@ async def on_message(message):
 
     if game != None:
 
-        if message.channel.name != 'lobby' and message.channel.name != 'add-songs' and message.channel.name != 'General' and message.channel.name != 'welcome' and message.channel.name != 'past-games':
+        if message.channel.name != 'lobby' and message.channel.name != 'add-songs' and message.channel.name != 'General' and message.channel.name != 'welcome' and message.channel.name != 'past-games' and (game.get_mode == 0 or game.get_mode == 1):
 
-            print(f"Message sent")
             print(f"User Message: {user_message}!")
             user = game.get_user(username)
 
@@ -90,17 +89,32 @@ async def on_message(message):
                     colour = 0xFF9B00
                 )
 
+                await message.author.edit(nick=f"[{user.get_points():.1f}] {username}")
+            
+        elif message.channel.name != 'lobby' and message.channel.name != 'add-songs' and message.channel.name != 'General' and message.channel.name != 'welcome' and message.channel.name != 'past-games' and game.get_mode() == 2:
+            
+            user = game.get_user(username)
+
+            if game.get_current_artist() in user_message and user.get_guessed_artist() == False:
                 
+                points = game.get_timer()
+                user.add_points(points)
+                user.set_guessed_artist(True)
+
+                bot_message = discord.Embed(
+                    description = f'{username} has guessed the correct ARTIST! +{points:.1f} points',
+                    colour = 0x00FF08
+                )
+
                 await message.author.edit(nick=f"[{user.get_points():.1f}] {username}")
         
-            if bot_message != None:
+        if bot_message != None:
 
                 for channel in channels:
                     
                     if channel.name != 'lobby' and channel.name != 'add-songs' and channel.name != 'General' and channel.name != 'welcome' and channel.name != 'past-games':
                         await channel.send(embed = bot_message)
-
-
+           
     await client.process_commands(message)
 
 @client.event
@@ -194,9 +208,8 @@ async def help(ctx):
 
     skip.add_field(name='How it works', value="In this Trivia you will be tested in 4 different categories, Audio, Artist, Album Cover and Lyrics.", inline=False)
     skip.add_field(name='Round 1 (Audio)', value="In this Category you will be played a short audio clip and you will have identify the Song Name and/or Artist. Bonus marks if you get both at once!", inline=False)
-    skip.add_field(name='Round 2 (Artist) [Not implemented]', value="In this Category you will be shown a picture of a music Artist and you will have to identify them.", inline=False)
-    skip.add_field(name='Round 3 (Album Cover) [Not implemented]', value="In this Category you will be shown a picture of an Album Cover and you will have to identify the Album name and/or Artist.", inline=False)
-    skip.add_field(name='Round 4 (Lyrics) [Not implemented]', value="In this Category you will be shown lyrics from a song and you will have identify the Song Name and/or Artist. Bonus marks if you get both at once!", inline=False)
+    skip.add_field(name='Round 2 (Lyrics)', value="In this Category you will be shown lyrics from a song and you will have identify the Song Name and/or Artist. Bonus marks if you get both at once!", inline=False)
+    skip.add_field(name='Round 3 (Artist)', value="In this Category you will be shown a picture of a music Artist and you will have to identify them.", inline=False)
     skip.add_field(name='How do I gain points?', value="You gain points by entering the correct answer in the username's-quiz-room chat.\n\n As long as the correct song/artist/album is contained within your message, you will receive points!\n\n Points are allocated depending on how much time is left, so answer as quickly as possible!", inline=False)
     skip.set_thumbnail(url="https://i.imgur.com/VLvORwa.jpg")
     await ctx.message.channel.send(embed = skip)
@@ -439,7 +452,6 @@ async def reset(ctx):
 
         users = []
         
-        
 @client.command()
 async def add_artist(ctx):
     artist = str(ctx.message.content)
@@ -448,8 +460,7 @@ async def add_artist(ctx):
     message = add_photo(artist)
     await ctx.message.channel.send(message)
     
-        
-        
+          
 @client.command()
 async def send_image(ctx):
 
