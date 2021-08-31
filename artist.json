@@ -661,10 +661,6 @@
             "path": "Artist/john mayer"
         },
         {
-            "name": "ava max",
-            "path": "Artist/ava max"
-        },
-        {
             "name": "big sean",
             "path": "Artist/big sean"
         },
@@ -823,6 +819,10 @@
         {
             "name": "mkto",
             "path": "Artist/mkto"
+        },
+        {
+            "name": "ava max",
+            "path": "Artist/ava max"
         }
     ]
 }

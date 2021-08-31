@@ -443,8 +443,11 @@ async def reset(ctx):
 @client.command()
 async def add_artist(ctx):
     artist = str(ctx.message.content)
+    artist = artist.replace("%add_artist ", '')
+    
     message = add_photo(artist)
     await ctx.message.channel.send(message)
+    
         
         
 @client.command()
