@@ -6,7 +6,7 @@ from game import Game
 from user import User
 from discord.ext import commands
 from add_song import addSong
-#from add_artist import add_photo
+from add_artist import add_photo
 #import logging
 #logging.basicConfig(level=logging.INFO)
 
@@ -43,9 +43,8 @@ async def on_message(message):
 
     if game != None:
 
-        if message.channel.name != 'lobby' and message.channel.name != 'add-songs' and message.channel.name != 'General' and message.channel.name != 'welcome' and message.channel.name != 'past-games' and (game.get_mode() == 0 or game.get_mode() == 1):
+        if message.channel.name != 'lobby' and message.channel.name != 'add-songs' and message.channel.name != 'General' and message.channel.name != 'welcome' and message.channel.name != 'past-games' and (game.get_mode == 0 or game.get_mode == 1):
 
-            print(f"Message sent")
             print(f"User Message: {user_message}!")
             user = game.get_user(username)
 
@@ -90,17 +89,32 @@ async def on_message(message):
                     colour = 0xFF9B00
                 )
 
+                await message.author.edit(nick=f"[{user.get_points():.1f}] {username}")
+            
+        elif message.channel.name != 'lobby' and message.channel.name != 'add-songs' and message.channel.name != 'General' and message.channel.name != 'welcome' and message.channel.name != 'past-games' and game.get_mode() == 2:
+            
+            user = game.get_user(username)
+
+            if game.get_current_artist() in user_message and user.get_guessed_artist() == False:
                 
+                points = game.get_timer()
+                user.add_points(points)
+                user.set_guessed_artist(True)
+
+                bot_message = discord.Embed(
+                    description = f'{username} has guessed the correct ARTIST! +{points:.1f} points',
+                    colour = 0x00FF08
+                )
+
                 await message.author.edit(nick=f"[{user.get_points():.1f}] {username}")
         
-            if bot_message != None:
+        if bot_message != None:
 
                 for channel in channels:
                     
                     if channel.name != 'lobby' and channel.name != 'add-songs' and channel.name != 'General' and channel.name != 'welcome' and channel.name != 'past-games':
                         await channel.send(embed = bot_message)
-
-
+           
     await client.process_commands(message)
 
 @client.event

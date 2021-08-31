@@ -4,7 +4,7 @@ from discord.ext import tasks
 import discord
 from play_song import play_song
 
-NUM_QUESTIONS = 2
+NUM_QUESTIONS = 10
 TIMER_LENGTH = 30
 
 def load_songs():
@@ -27,6 +27,8 @@ def load_songs():
 
         if len(i['lyrics'][0]) > 4000 : # character lyrics for embeds
 
+            print("LYRICS TOO LONG!")
+            print(f"{i['name']}")
             i['lyrics'].pop(0)
 
     return list
@@ -64,8 +66,6 @@ class Game:
         self.vc = None
         self.channels = channels
 
-        print(self.current)
-    
     @tasks.loop(seconds=1.0)
     async def start_timer(self):
 
@@ -160,9 +160,16 @@ class Game:
                         )
                         await channel.send(embed = bot_message)
 
+                        with open(f"{self.current_artist['path']}.png", 'rb') as f:
+                            picture = discord.File(f)
+
+                        await channel.send(file=picture)
+
+                        print(self.current_artist)
+
                 elif self.mode == 2 and self.timer <= 0:
 
-                    artist = self.current_artist['name']
+                    artist = self.current_artist['name'].title()
 
                     bot_message = discord.Embed(
                         title = "Time's Up!",
@@ -198,6 +205,8 @@ class Game:
                         bot_message.add_field(name='Final Leaderboard\n', value=self.leaderboard(), inline=False)
                         await past_games.send(embed = bot_message)
 
+                        await self.vc.disconnect()
+
 
             if self.timer > 0:
 
@@ -220,6 +229,10 @@ class Game:
                 if self.mode == 0 or self.mode == 1:
 
                     self.next_song()
+                
+                elif self.mode == 2:
+
+                    self.next_artist()
 
                 if self.question < NUM_QUESTIONS-1:
 
@@ -238,6 +251,8 @@ class Game:
                     if self.mode == 0:
 
                         await self.vc.disconnect()
+                        channel = discord.utils.get(self.ctx.guild.channels, name="General")
+                        self.vc = await channel.connect()
                         self.timer = TIMER_LENGTH
 
                     elif self.mode == 1:
@@ -281,6 +296,12 @@ class Game:
                 if user.get_guessed_song() == False or user.get_guessed_artist() == False:
 
                     return False
+            
+            elif self.mode == 2:
+
+                if user.get_guessed_artist() == False:
+
+                    return False
         
         return True
 
@@ -303,6 +324,10 @@ class Game:
     def current_song_artist(self):
 
         return self.current['artist']
+    
+    def get_current_artist(self): # only for round 3
+
+        return self.current_artist['name']
 
     def next_song(self):
 
