@@ -6,7 +6,7 @@ from game import Game
 from user import User
 from discord.ext import commands
 from add_song import addSong
-from add_artist import add_photo
+#from add_artist import add_photo
 #import logging
 #logging.basicConfig(level=logging.INFO)
 
@@ -43,7 +43,7 @@ async def on_message(message):
 
     if game != None:
 
-        if message.channel.name != 'lobby' and message.channel.name != 'add-songs' and message.channel.name != 'General' and message.channel.name != 'welcome' and message.channel.name != 'past-games':
+        if message.channel.name != 'lobby' and message.channel.name != 'add-songs' and message.channel.name != 'General' and message.channel.name != 'welcome' and message.channel.name != 'past-games' and (game.get_mode() == 0 or game.get_mode() == 1):
 
             print(f"Message sent")
             print(f"User Message: {user_message}!")
@@ -439,13 +439,13 @@ async def reset(ctx):
 
         users = []
         
-        
+'''
 @client.command()
 async def add_artist(ctx):
     artist = str(ctx.message.content)
     message = add_photo(artist)
     await ctx.message.channel.send(message)
-        
+'''      
         
 @client.command()
 async def send_image(ctx):

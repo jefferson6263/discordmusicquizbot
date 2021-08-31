@@ -4,7 +4,7 @@ from discord.ext import tasks
 import discord
 from play_song import play_song
 
-NUM_QUESTIONS = 1
+NUM_QUESTIONS = 2
 TIMER_LENGTH = 30
 
 def load_songs():
@@ -16,6 +16,30 @@ def load_songs():
     data = json.load(f)
 
     for i in data['songs']:
+
+        list.append(i)
+
+    random.shuffle(list)
+    
+    for i in list:
+
+        random.shuffle(i['lyrics'])
+
+        if len(i['lyrics'][0]) > 4000 : # character lyrics for embeds
+
+            i['lyrics'].pop(0)
+
+    return list
+
+def load_artists():
+
+    list = []
+
+    f = open('artist.json', 'r')
+
+    data = json.load(f)
+
+    for i in data['artist']:
 
         list.append(i)
 
@@ -32,6 +56,8 @@ class Game:
         self.question = 0
         self.songs = load_songs()
         self.current = self.songs.pop(0)
+        self.artists = load_artists()
+        self.current_artist = self.artists.pop(0)
         self.timer = TIMER_LENGTH
         self.users = users
         self.ctx = ctx
@@ -83,7 +109,72 @@ class Game:
 
                     await channel.send(embed = bot_message)
 
-                    if self.question >= NUM_QUESTIONS-1: # change this when adding more modes
+                elif self.mode == 1 and self.timer == TIMER_LENGTH:
+
+                    if self.question == 0:
+                        bot_message = discord.Embed(
+                            title = 'Round 2: Guess the Song (Lyrics)\n',
+                            description = 'You will be given a section of the lyrics.\n Guess the song and artist',
+                            colour = 0x00A2FF
+                        )
+                        await channel.send(embed = bot_message)
+
+                    if self.timer == TIMER_LENGTH:
+                        bot_message = discord.Embed(
+                            title = f'Question {self.question+1} (Lyrics)',
+                            colour = 0x00A2FF
+                        )
+
+                        bot_message.add_field(name = 'Lyrics\n', value = self.current['lyrics'][0])
+                        await channel.send(embed = bot_message)
+
+                elif self.mode == 1 and self.timer <= 0:
+
+                    song_name = self.current_song_name().title()
+                    song_artist = self.current_song_artist().title()
+
+                    bot_message = discord.Embed(
+                        title = "Time's Up!",
+                        description = f'The answer was {song_name} by {song_artist}',
+                        colour = 0x00A2FF
+                    )
+
+                    bot_message.add_field(name='Leaderboard\n', value=self.leaderboard(), inline=False)
+
+                    await channel.send(embed = bot_message)
+
+                elif self.mode == 2 and self.timer == TIMER_LENGTH:
+
+                    if self.question == 0:
+                        bot_message = discord.Embed(
+                            title = 'Round 3: Guess the artist (Picture)\n',
+                            description = 'You will be given a picture of the artist.\n Guess the artist',
+                            colour = 0x00A2FF
+                        )
+                        await channel.send(embed = bot_message)
+
+                    if self.timer == TIMER_LENGTH:
+                        bot_message = discord.Embed(
+                            title = f'Question {self.question+1} (Picture)',
+                            colour = 0x00A2FF
+                        )
+                        await channel.send(embed = bot_message)
+
+                elif self.mode == 2 and self.timer <= 0:
+
+                    artist = self.current_artist['name']
+
+                    bot_message = discord.Embed(
+                        title = "Time's Up!",
+                        description = f'The answer was {artist}',
+                        colour = 0x00A2FF
+                    )
+
+                    bot_message.add_field(name='Leaderboard\n', value=self.leaderboard(), inline=False)
+
+                    await channel.send(embed = bot_message)
+
+                    if self.question >= NUM_QUESTIONS-1 and self.mode == 2: # change this when adding more modes
 
                         winner = sorted(self.users, key=lambda x: x.points, reverse=True)[0]
 
@@ -107,12 +198,13 @@ class Game:
                         bot_message.add_field(name='Final Leaderboard\n', value=self.leaderboard(), inline=False)
                         await past_games.send(embed = bot_message)
 
+
             if self.timer > 0:
 
                 await self.ctx.guild.me.edit(nick=f"{self.timer} seconds left!")
 
                 if self.all_answered() == True: # question ends if all users have guessed correctly
-
+                    print("all answered")
                     self.timer = 0
 
                 else:
@@ -124,7 +216,10 @@ class Game:
                 await self.ctx.guild.me.edit(nick=f"{self.timer} seconds left!")
 
                 self.reset_user_guesses()
-                self.next_song()
+
+                if self.mode == 0 or self.mode == 1:
+
+                    self.next_song()
 
                 if self.question < NUM_QUESTIONS-1:
 
@@ -139,14 +234,28 @@ class Game:
                 else: # currently ends the game, but can add more modes later
                     
                     self.question = 0
-                    '''
-                    self.mode += 1
-                    '''
 
-                    await self.ctx.guild.me.edit(nick=f"Game Finished!")
-                    await self.vc.disconnect()
-                    self.active = False
-            
+                    if self.mode == 0:
+
+                        await self.vc.disconnect()
+                        self.timer = TIMER_LENGTH
+
+                    elif self.mode == 1:
+                        
+                        self.timer = TIMER_LENGTH
+
+                    elif self.mode == 2:
+
+                        self.timer = TIMER_LENGTH
+                            
+                    elif self.mode == 3: # change this when adding more 
+                        
+                        await self.ctx.guild.me.edit(nick=f"Game Finished!")
+                        
+                        self.active = False
+
+                    self.mode += 1
+                        
             else: 
 
                 self.timer -= 1
@@ -167,7 +276,7 @@ class Game:
 
         for user in self.users:
 
-            if self.mode == 0:
+            if self.mode == 0 or self.mode == 1:
 
                 if user.get_guessed_song() == False or user.get_guessed_artist() == False:
 
@@ -209,6 +318,10 @@ class Game:
             leaderboard_string += f"{count+1}. {user.username}: {user.points} points\n"
 
         return leaderboard_string
+
+    def next_artist(self):
+
+        self.current_artist = self.artists.pop(0)
     
     def get_users(self):
 
@@ -230,3 +343,7 @@ class Game:
             user.set_guessed_artist(False)
             user.set_guessed_album(False)
 
+    def get_mode(self):
+
+        return self.mode
+    
